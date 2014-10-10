@@ -95,9 +95,7 @@ echo  $((flag1*flag2))
 done
   let "lineNumber++"
   echo -e "$lineNumber" > .tweetBookmark
-  if [[ -n "$a" && -n "$b" ]];
-  then echo  -e "$line$a$b">> $1.label
-  fi
+  echo  -e "$line$a$b">> $1.label
 done
 echo -e "${GREEN}THANK YOU!! CHILL MAADI${NONE}"
 tput sgr0
