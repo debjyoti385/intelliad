@@ -35,7 +35,7 @@ do
   echo -e "${RED}============================================================================${NONE}"
   echo -e "Mark the TWEETS in following catagories:-"
   echo "0: Finance        	4: Travel       	7: Games" 
-  echo "1: Apparel 	        5: Arts & Education 	8: Community"
+  echo "1: Apparel 	        5: Arts & Entainment 	8: Community"
   echo "2: Law & Governance     6: Health & Fitness     9: Dining & Nightlife"
   echo "3: Jobs & Education"
   echo -e "${RED}============================================================================${NONE}"
