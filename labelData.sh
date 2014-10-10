@@ -25,7 +25,7 @@ lineNumber=$(cat .tweetBookmark)
 if [[ $lineNumber -eq "" ]];
 then lineNumber=0 
 fi
-awk "NR>$lineNumber" tweets.csv|
+awk "NR>$lineNumber" $1|
 while read line
 do
 for (( ; ; ))
@@ -98,6 +98,6 @@ done
   then echo  -e "$line$a$b">> $1.label
   fi
 done
-echo "${GREEN}THANK YOU!! CHILL MAADI${NONE}"
+echo -e "${GREEN}THANK YOU!! CHILL MAADI${NONE}"
 tput sgr0
 
