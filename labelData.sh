@@ -2,6 +2,7 @@
 
 #usage ./tweetLabel.sh [filepath]
 
+tput sgr0
 if [[ $1 == "" ]];
 then echo "USAGE: ./tweetLabel.sh [filepath]"
 exit
@@ -34,7 +35,7 @@ do
 
   echo -e "${RED}============================================================================${NONE}"
   echo -e "Mark the TWEETS in following catagories:-"
-  echo "0: Finance        	4: Travel       	7: Games" 
+  echo "0: Finance        	4: Travel       	7: Games   		10: Religious"
   echo "1: Apparel 	        5: Arts & Entainment 	8: Community"
   echo "2: Law & Governance     6: Health & Fitness     9: Dining & Nightlife"
   echo "3: Jobs & Education"
@@ -51,7 +52,7 @@ arr=$(echo $a | tr "," "\n")
 flag1=1
 for x in $arr
 do
-  if [[ $x -gt 9 || $b -lt 0 ]];
+  if [[ $x -gt 10 || $b -lt 0 ]];
        then flag1=0;
        break;
        fi
@@ -62,7 +63,7 @@ done
   ## GET LABEL FOR USER DESCRIPTION ##
   echo -e "${RED}============================================================================${NONE}"
   echo -e "Mark the USER in following catagories:-"
-  echo "0: Organisation        	3: Working       	6: Fitness Maniac" 
+  echo "0: Organisation        	3: Working       	6: Fitness Maniac  	9: Sports Fan" 
   echo "1: Business Man	        4: Casual       	7: Student"
   echo "2: Social Animal        5: Retired              8: Religious"
   echo -e "${RED}============================================================================${NONE}"
@@ -79,7 +80,7 @@ arr=$(echo $b | tr "," "\n")
 flag2=1
 for x in $arr
 do
-  if [[ $x -gt 8 || $b -lt 0 ]];
+  if [[ $x -gt 9 || $b -lt 0 ]];
        then flag2=0;
        break;
        fi
