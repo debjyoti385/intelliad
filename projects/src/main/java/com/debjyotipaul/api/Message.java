@@ -31,18 +31,20 @@ public class Message {
     return content;
   }
 
+/*
   public static String getFinalString() {
     SampleServiceConfiguration.tweets.clear();
     SampleServiceConfiguration.photos.clear();
     SampleServiceConfiguration serv = new SampleServiceConfiguration();
     SampleServiceConfiguration.getDefaultTweets();
     SampleServiceConfiguration.getDefaultAds();
-    return (fName + "({\"count\":1528,\"has_more\":true," + "\"map_location\":{\"lat\":"
+   /* return (fName + "({\"count\":1528,\"has_more\":true," + "\"map_location\":{\"lat\":"
         + (serv.x1 + serv.x2) / 2 + ",\"lon\":" + (serv.y1 + serv.y2) / 2 + ",\"panoramio_zoom\":7},"
         + "\"minx\": 88.971,\"miny\": 42.091,\"maxx\": 90.937,\"maxy\": 93.17,"
         + serv.fillsCatAds() + "\"tweets\":[" + serv.fillTweets() + "],\"adsPhotos\":["
-        + serv.fillsAdData() + "]})");
+        + serv.fillsAdData() + "]})");*/
+    //return "hello";
 
   }
 
-}
+

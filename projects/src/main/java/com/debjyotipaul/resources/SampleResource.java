@@ -58,7 +58,11 @@ public class SampleResource {
 
       IntelliADForm intelliADForm = new IntelliADForm(50,true,mapLocationForm,minx.get(),miny.get(),maxx.get(),maxy.get(),adCategoryHist,tweetList);
 
+<<<<<<< Updated upstream
       String result = fname.get()  + "("+ intelliADForm+ ")";
+=======
+      String result = fname.get()  + intelliADForm.toString()+ ")";
+>>>>>>> Stashed changes
   return result;
    // return new Message(id, String.format(template, minx));
 
