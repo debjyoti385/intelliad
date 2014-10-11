@@ -52,9 +52,9 @@ public class SampleResource {
       MapLocationForm mapLocationForm = new MapLocationForm((minx.get()+maxx.get())/2, (miny.get()+maxy.get())/2, 7 );
 
       Map<String,Integer> adCategoryHist= new HashMap<String, Integer>();
-      //adCategoryHist.put("category1",10);
-      //adCategoryHist.put("category2",30);
-      //adCategoryHist.put("category3",60);
+      adCategoryHist.put("category1",10);
+      adCategoryHist.put("category2",30);
+      adCategoryHist.put("category3",60);
 
       IntelliADForm intelliADForm = new IntelliADForm(50,true,mapLocationForm,minx.get(),miny.get(),maxx.get(),maxy.get(),adCategoryHist,tweetList);
 

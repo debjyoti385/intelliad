@@ -57,11 +57,11 @@ public  Tweet(Optional<Double> minx, Optional<Double> miny,Optional<Double> maxx
         this.height = 375;
 
         Random randomGenerator = new Random();
-        int randomX = randomGenerator.nextInt((int)(minx.get() + maxx.get()));
-        int randomY = randomGenerator.nextInt((int)(miny.get() + maxy.get()));
+        int randomX = randomGenerator.nextInt((int)(maxx.get() - minx.get()));
+        int randomY = randomGenerator.nextInt((int)(  maxy.get() - miny.get()   ));
         int count = randomGenerator.nextInt(50);
-        this.latitude = (minx.get() + maxx.get())/2.0 + (double) randomX;
-        this.longitude = (miny.get() + maxy.get())/2.0 + (double) randomY;
+        this.latitude = minx.get()  + (double) randomX;
+        this.longitude = miny.get()  + (double) randomY;
         this.photo_title = "Sample tweet alias of photo_title" + count ;
         this.photo_id = 11630238;
         this.owner_name = "Rnsun";
