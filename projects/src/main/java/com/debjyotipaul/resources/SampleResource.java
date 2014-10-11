@@ -44,7 +44,7 @@ public class SampleResource {
 
     List<Tweet> tweetList = new ArrayList<Tweet>();
     for(int i = 0 ; i< 50 ; i++){
-      Tweet tweet = new Tweet(minx,miny);
+      Tweet tweet = new Tweet(minx,miny,maxx,maxy);
       tweetList.add(tweet);
       System.out.println(tweet);
     }
