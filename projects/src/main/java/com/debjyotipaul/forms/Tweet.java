@@ -153,18 +153,18 @@ public void setOwner_id(int owner_id) {
     @Override
     public String toString() {
         return "{" +
-                "height:" + height +
-                ", latitude:" + latitude +
-                ", longitude:" + longitude +
-                ", photo_title:'" + photo_title + '\'' +
-                ", photo_id:" + photo_id +
-                ", owner_name:'" + owner_name + '\'' +
-                ", owner_url:'" + owner_url + '\'' +
-                ", photo_file_url:'" + photo_file_url + '\'' +
-                ", photo_url:'" + photo_url + '\'' +
-                ", upload_date:'" + upload_date + '\'' +
-                ", width:" + width +
-                ", owner_id:" + owner_id +
+                "\"height\":" + height +
+                ", \"latitude\":" + latitude +
+                ", \"longitude\":" + longitude +
+                ", \"photo_title\":'" + photo_title + '\'' +
+                ", \"photo_id\":" + photo_id +
+                ", \"owner_name\":'" + owner_name + '\'' +
+                ", \"owner_url\":'" + owner_url + '\'' +
+                ", \"photo_file_url\":'" + photo_file_url + '\'' +
+                ", \"photo_url\":'" + photo_url + '\'' +
+                ", \"upload_date\":'" + upload_date + '\'' +
+                ", \"width\":" + width +
+                ", \"owner_id\":" + owner_id +
                 '}';
     }
 }
