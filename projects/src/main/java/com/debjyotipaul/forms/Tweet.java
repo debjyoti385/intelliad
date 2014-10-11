@@ -18,11 +18,11 @@ public class Tweet {
 @JsonProperty
   double longitude;
 @JsonProperty
-  public String photo_title;
+  public String photo_title; //text
 @JsonProperty
   public int photo_id;
 @JsonProperty
-  public String owner_name;
+  public String owner_name; //user descirption
 @JsonProperty
   public String owner_url;
 @JsonProperty
@@ -57,8 +57,10 @@ public  Tweet(Optional<Double> minx, Optional<Double> miny,Optional<Double> maxx
         this.height = 375;
 
         Random randomGenerator = new Random();
-        int randomX = randomGenerator.nextInt((int)(maxx.get() - minx.get()));
-        int randomY = randomGenerator.nextInt((int)(  maxy.get() - miny.get()   ));
+        System.out.println("@@@"+(int)(Math.abs(maxx.get() - minx.get())));
+        int randomX = randomGenerator.nextInt((int)(Math.abs(maxx.get() - minx.get())));
+       // System.out.println("---"+(int)(Math.abs(maxx.get() - minx.get())));
+        int randomY = randomGenerator.nextInt((int)(  Math.abs(maxy.get() - miny.get()   )));
         int count = randomGenerator.nextInt(50);
         this.latitude = minx.get()  + (double) randomX;
         this.longitude = miny.get()  + (double) randomY;

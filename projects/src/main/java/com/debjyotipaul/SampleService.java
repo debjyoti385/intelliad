@@ -26,7 +26,7 @@ public class SampleService extends Application<SampleServiceConfiguration> {
         environment.healthChecks().register("template", new SampleHealthCheck(template));
     }
 
-    /**
+    /**s
      * Configure aspects of the service required before the service is run,
      * like bundles, configuration source providers, etc.
      *
