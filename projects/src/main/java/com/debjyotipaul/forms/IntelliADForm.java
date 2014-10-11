@@ -15,7 +15,7 @@ import java.util.Map;
  */
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class IntelliADForm {
+public class IntelliADForm extends Object {
     @JsonProperty
     int count;
 

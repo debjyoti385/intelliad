@@ -1,9 +1,9 @@
 package com.debjyotipaul.resources;
 
-import com.codahale.metrics.annotation.Timed;
 import com.debjyotipaul.forms.IntelliADForm;
 import com.debjyotipaul.forms.MapLocationForm;
 import com.debjyotipaul.forms.Tweet;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.common.base.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,8 +36,8 @@ public class SampleResource {
   }
 
   @GET
-  @Timed
-  public String sayHello(@QueryParam("minx") Optional<Double> minx,
+  @Produces({MediaType.APPLICATION_JSON, "application/x-javascript; charset=UTF-8", "application/javascript; charset=UTF-8"})
+  public Object sayHello(@QueryParam("minx") Optional<Double> minx,
       @QueryParam("miny") Optional<Double> miny,@QueryParam("maxx") Optional<Double> maxx,
       @QueryParam("maxy") Optional<Double> maxy, @QueryParam("callback") Optional<String> fname) {
     long id = counter.incrementAndGet();
@@ -52,15 +52,15 @@ public class SampleResource {
       MapLocationForm mapLocationForm = new MapLocationForm((minx.get()+maxx.get())/2, (miny.get()+maxy.get())/2, 7 );
 
       Map<String,Integer> adCategoryHist= new HashMap<String, Integer>();
-      adCategoryHist.put("category1",10);
-      adCategoryHist.put("category2",30);
-      adCategoryHist.put("category3",60);
+      //adCategoryHist.put("category1",10);
+      //adCategoryHist.put("category2",30);
+      //adCategoryHist.put("category3",60);
 
       IntelliADForm intelliADForm = new IntelliADForm(50,true,mapLocationForm,minx.get(),miny.get(),maxx.get(),maxy.get(),adCategoryHist,tweetList);
 
 
       String result = fname.get()  + "(" + intelliADForm.toString()+ ")";
-  return result;
+   return new JSONPObject(fname.get(), intelliADForm);
    // return new Message(id, String.format(template, minx));
 
 
