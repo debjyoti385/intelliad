@@ -1,22 +1,21 @@
 package com.debjyotipaul.util;
 
+import com.debjyotipaul.forms.Tweet;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
-
-import com.debjyotipaul.forms.Tweet;
 
 public class ProcessData {
 
   List<Tweet> currentTweets;
   double minx, miny, maxx, maxy;
-  Map<String, Double> adHistogram;
-  Map<String, Double> tweetHistogram;
-  Map<String, Double> userHistogram;
+
+  public Map<String, Double> adHistogram;
+  public Map<String, Double> tweetHistogram;
+  public Map<String, Double> userHistogram;
 
   public ProcessData(double minx, double miny, double maxx, double maxy) {
     // TODO Auto-generated constructor stub
@@ -72,13 +71,15 @@ public class ProcessData {
         .getLongitude() <= maxx);
   }
 
-  public void getCurrentTweets() {
+  public List<Tweet> getCurrentTweets() {
     for (Entry<Tweet, List<String>> e : DataLoader.allTweets.entrySet()) {
       Tweet t = e.getKey();
       if (isWithin(t))
         currentTweets.add(t);
     }
     System.out.println("All Tweets in Process" + DataLoader.allTweets.size());
+    return currentTweets;
+
   }
 
   public void normalize(Map<String, Double> histogram){

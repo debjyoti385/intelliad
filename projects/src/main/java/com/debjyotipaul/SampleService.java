@@ -3,6 +3,7 @@ package com.debjyotipaul;
 import com.debjyotipaul.health.SampleHealthCheck;
 import com.debjyotipaul.resources.SampleResource;
 
+import com.debjyotipaul.util.DataLoader;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -26,7 +27,7 @@ public class SampleService extends Application<SampleServiceConfiguration> {
         environment.healthChecks().register("template", new SampleHealthCheck(template));
     }
 
-    /**s
+    /**
      * Configure aspects of the service required before the service is run,
      * like bundles, configuration source providers, etc.
      *
@@ -35,5 +36,9 @@ public class SampleService extends Application<SampleServiceConfiguration> {
     @Override
     public void initialize(Bootstrap<SampleServiceConfiguration> bootstrap) {
         //Nothing to do
+        DataLoader.loadAllTweets("/home/mangat/tweetLabels.csv", true);
+        DataLoader.loadAllTweets("/home/mangat/userLabels.csv", false);
+        // loadAllAds("/home/mangat/userLabels.csv");
+        DataLoader.makeMapping();
     }
 }
