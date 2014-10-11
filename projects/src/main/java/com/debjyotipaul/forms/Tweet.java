@@ -57,8 +57,8 @@ public  Tweet(Optional<Double> minx, Optional<Double> miny,Optional<Double> maxx
         this.height = 375;
 
         Random randomGenerator = new Random();
-        int randomX = randomGenerator.nextInt(50);
-        int randomY = randomGenerator.nextInt(50);
+        int randomX = randomGenerator.nextInt((int)(minx.get() + maxx.get()));
+        int randomY = randomGenerator.nextInt((int)(miny.get() + maxy.get()));
         int count = randomGenerator.nextInt(50);
         this.latitude = (minx.get() + maxx.get())/2.0 + (double) randomX;
         this.longitude = (miny.get() + maxy.get())/2.0 + (double) randomY;
