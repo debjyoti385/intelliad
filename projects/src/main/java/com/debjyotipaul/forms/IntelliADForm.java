@@ -126,4 +126,19 @@ public class IntelliADForm {
     public void setMap_location(MapLocationForm map_location) {
         this.map_location = map_location;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "count=" + count +
+                ", has_more=" + has_more +
+                ", map_location=" + map_location.toString() +
+                ", minx=" + minx +
+                ", miny=" + miny +
+                ", maxx=" + maxx +
+                ", maxy=" + maxy +
+                ", adCategoryHist=" + adCategoryHist +
+                ", photos=" + photos +
+                '}';
+    }
 }

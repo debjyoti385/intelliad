@@ -57,4 +57,13 @@ public class MapLocationForm {
     public void setPanoramio_zoom(double panoramio_zoom) {
         this.panoramio_zoom = panoramio_zoom;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "lat=" + lat +
+                ", lon=" + lon +
+                ", panoramio_zoom=" + panoramio_zoom +
+                '}';
+    }
 }
