@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -38,12 +37,12 @@ public class IntelliADForm extends Object {
     double maxy;
 
     @JsonProperty
-    Map<String,Integer> adCategoryHist;
+    List<CategoryCountForm> adCategoryHist;
 
     @JsonProperty
     List<Tweet> photos;
 
-    public IntelliADForm(int count, boolean has_more, MapLocationForm map_location, double minx, double miny, double maxx, double maxy, Map<String, Integer> adCategoryHist, List<Tweet> photos) {
+    public IntelliADForm(int count, boolean has_more, MapLocationForm map_location, double minx, double miny, double maxx, double maxy, List<CategoryCountForm> adCategoryHist, List<Tweet> photos) {
         this.count = count;
         this.has_more = has_more;
         this.map_location = map_location;
@@ -87,11 +86,11 @@ public class IntelliADForm extends Object {
         this.maxy = maxy;
     }
 
-    public Map<String, Integer> getAdCategoryHist() {
+    public List<CategoryCountForm> getAdCategoryHist() {
         return adCategoryHist;
     }
 
-    public void setAdCategoryHist(Map<String, Integer> adCategoryHist) {
+    public void setAdCategoryHist(List<CategoryCountForm> adCategoryHist) {
         this.adCategoryHist = adCategoryHist;
     }
 

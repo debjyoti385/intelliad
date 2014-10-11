@@ -1,5 +1,6 @@
 package com.debjyotipaul.resources;
 
+import com.debjyotipaul.forms.CategoryCountForm;
 import com.debjyotipaul.forms.IntelliADForm;
 import com.debjyotipaul.forms.MapLocationForm;
 import com.debjyotipaul.forms.Tweet;
@@ -14,9 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Path("/ads")
@@ -51,10 +50,12 @@ public class SampleResource {
 
       MapLocationForm mapLocationForm = new MapLocationForm((minx.get()+maxx.get())/2, (miny.get()+maxy.get())/2, 7 );
 
-      Map<String,Integer> adCategoryHist= new HashMap<String, Integer>();
-      //adCategoryHist.put("category1",10);
-      //adCategoryHist.put("category2",30);
-      //adCategoryHist.put("category3",60);
+      List<CategoryCountForm> adCategoryHist= new ArrayList<CategoryCountForm>();
+      adCategoryHist.add(new CategoryCountForm("category1", 10));
+      adCategoryHist.add(new CategoryCountForm("category2",30));
+      adCategoryHist.add(new CategoryCountForm("category3",60));
+      adCategoryHist.add(new CategoryCountForm("category4",24));
+
 
       IntelliADForm intelliADForm = new IntelliADForm(50,true,mapLocationForm,minx.get(),miny.get(),maxx.get(),maxy.get(),adCategoryHist,tweetList);
 
