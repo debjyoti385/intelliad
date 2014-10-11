@@ -61,9 +61,9 @@ public class MapLocationForm {
     @Override
     public String toString() {
         return "{" +
-                "lat=" + lat +
-                ", lon=" + lon +
-                ", panoramio_zoom=" + panoramio_zoom +
+                "lat:" + lat +
+                ", lon:" + lon +
+                ", panoramio_zoom:" + panoramio_zoom +
                 '}';
     }
 }

@@ -130,15 +130,15 @@ public class IntelliADForm {
     @Override
     public String toString() {
         return "{" +
-                "count=" + count +
-                ", has_more=" + has_more +
-                ", map_location=" + map_location.toString() +
-                ", minx=" + minx +
-                ", miny=" + miny +
-                ", maxx=" + maxx +
-                ", maxy=" + maxy +
-                ", adCategoryHist=" + adCategoryHist +
-                ", photos=" + photos +
+                "count:" + count +
+                ", has_more:" + has_more +
+                ", map_location:" + map_location.toString() +
+                ", minx:" + minx +
+                ", miny:" + miny +
+                ", maxx:" + maxx +
+                ", maxy:" + maxy +
+                ", adCategoryHist:" + adCategoryHist +
+                ", photos:" + photos +
                 '}';
     }
 }
