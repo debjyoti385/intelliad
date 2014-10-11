@@ -1,7 +1,13 @@
 package com.debjyotipaul.forms;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.Optional;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Random;
 
 @JsonIgnoreProperties(ignoreUnknown =true )
 public class Tweet {
@@ -28,10 +34,10 @@ public String upload_date;
 @JsonProperty
 public int width;
 @JsonProperty
-public String owner_id;
+public int owner_id;
 public Tweet(int height, double latitude, double longitude, String photo_title, int photo_id,
     String owner_name, String owner_url, String photo_file_url, String photo_url,
-    String upload_date, int width, String owner_id) {
+    String upload_date, int width, int owner_id) {
   super();
   this.height = height;
   this.latitude = latitude;
@@ -46,6 +52,31 @@ public Tweet(int height, double latitude, double longitude, String photo_title, 
   this.width = width;
   this.owner_id = owner_id;
 }
+
+public  Tweet(Optional<Double> minx, Optional<Double> miny) {
+        this.height = 375;
+
+        Random randomGenerator = new Random();
+        int randomX = randomGenerator.nextInt(50);
+        int randomY = randomGenerator.nextInt(50);
+        int count = randomGenerator.nextInt(50);
+        this.latitude = minx.get() + (double) randomX;
+        this.longitude = miny.get() + (double) randomY;
+        this.photo_title = "Sample tweet alias of photo_title" + count ;
+        this.photo_id = 11630238;
+        this.owner_name = "Rnsun";
+        this.owner_url = "http://www.panoramio.com/user/475995";
+        this.photo_file_url = "http://mw2.google.com/mw-panoramio/photos/medium/11630238.jpg";
+        this.photo_url = "http://www.panoramio.com/photo/11630238";
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMMMMMMMMMM yyyy");
+        Calendar cal = new GregorianCalendar(2014, 8, (int) (Math.random() * 29 + 1));
+        this.upload_date = sdf.format(cal.getTime());
+
+        this.width = 500;
+        this.owner_id = 475995;
+
+    }
+
 public int getHeight() {
   return height;
 }
@@ -112,13 +143,13 @@ public int getWidth() {
 public void setWidth(int width) {
   this.width = width;
 }
-public String getOwner_id() {
+public int getOwner_id() {
   return owner_id;
 }
-public void setOwner_id(String owner_id) {
+public void setOwner_id(int owner_id) {
   this.owner_id = owner_id;
 }
-  
 
-  
+
+
 }
