@@ -1,5 +1,6 @@
 package com.debjyotipaul.util;
 
+import com.debjyotipaul.forms.Ads;
 import com.debjyotipaul.forms.Tweet;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.Map.Entry;
 public class ProcessData {
 
   List<Tweet> currentTweets;
+
   double minx, miny, maxx, maxy;
 
   public Map<String, Double> adHistogram;
@@ -60,10 +62,10 @@ public class ProcessData {
     }
     normalize(adHistogram);
     normalize(tweetHistogram);
-    normalize(userHistogram);    
-    System.out.println("ADS::"+adHistogram);
-    System.out.println("TWEET"+tweetHistogram);
-    System.out.println("USER"+userHistogram);
+    normalize(userHistogram);
+    System.out.println("ADS::" + adHistogram);
+    System.out.println("TWEET" + tweetHistogram);
+    System.out.println("USER" + userHistogram);
   }
 
   public boolean isWithin(Tweet t) {
@@ -82,15 +84,33 @@ public class ProcessData {
 
   }
 
-  public void normalize(Map<String, Double> histogram){
-   double sum = 0; 
-   for(Double val : histogram.values()){
-     sum+=val;
-   }
-   for(Entry<String, Double>E :histogram.entrySet()){ 
-     E.setValue(E.getValue()*100/sum);
-   } 
+  public void normalize(Map<String, Double> histogram) {
+    double sum = 0;
+    for (Double val : histogram.values()) {
+      sum += val;
+    }
+    for (Entry<String, Double> E : histogram.entrySet()) {
+      E.setValue(E.getValue() * 100 / sum);
+    }
   }
+
+  public List<Tweet> getSampleTweets() {
+    List<Tweet> tweetList = new ArrayList<Tweet>();
+    if(currentTweets.size()<=2000) return currentTweets;
+    for(int i = 0;i<100;i++){
+      tweetList.add(currentTweets.get((int)(Math.random()*currentTweets.size())));
+    }
+    return tweetList;
+  }
+  
+  public List<Ads> getSampleAds() {
+    List<Ads> adList = new ArrayList<Ads>();
+    for(List<String> ads: DataLoader.allAds.values()){
+    //  adList.add(new Ads(ads.get((int)Math.random()*ads.size()))); //create object here
+    }
+    return adList;
+  }
+
   /**
    * @param args
    */
