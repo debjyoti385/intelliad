@@ -81,7 +81,7 @@ public class SampleResource {
 
         ProcessData data = new ProcessData(minx.get(), miny.get(),maxx.get(),maxy.get());
 
-        List<Tweet> tweets = data.getSampleTweets();
+        List<Tweet> tweets = data.getCurrentTweets();
         data.makeHistograms();
 
         ad_chart.clear();
@@ -91,6 +91,8 @@ public class SampleResource {
         for (String key: data.adHistogram.keySet()){
             ad_chart.add(new CategoryCountForm(key,data.adHistogram.get(key)));
         }
+        
+        System.out.println("----"+data.adHistogram);
 
         for (String key: data.tweetHistogram.keySet()){
             tweet_chart.add(new CategoryCountForm(key,data.tweetHistogram.get(key)));
@@ -114,7 +116,7 @@ public class SampleResource {
 
         IntelliADForm intelliADForm = new IntelliADForm(50,true,mapLocationForm,minx.get(),miny.get(),maxx.get(),maxy.get(),adCategoryHist,tweets.subList(0, numTweet));
         
-        FileWriter file = new FileWriter("/Library/WebServer/Documents/histograms.json");
+        FileWriter file = new FileWriter("/var/www/histograms.json");
         try {
             String jsonStr=new Gson().toJson(new HistogramForm(ad_chart,tweet_chart,user_chart));
             file.write(jsonStr);
