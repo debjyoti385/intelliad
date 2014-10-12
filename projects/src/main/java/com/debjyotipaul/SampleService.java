@@ -36,8 +36,8 @@ public class SampleService extends Application<SampleServiceConfiguration> {
     @Override
     public void initialize(Bootstrap<SampleServiceConfiguration> bootstrap) {
         //Nothing to do
-        DataLoader.loadAllTweets("/home/mangat/tweetLabels.csv", true);
-        DataLoader.loadAllTweets("/home/mangat/userLabels.csv", false);
+        DataLoader.loadAllTweets("/Users/amit.bendale/Documents/Hack/tweetLabels.csv", true);
+        DataLoader.loadAllTweets("/Users/amit.bendale/Documents/Hack/userLabels.csv", false);
         // loadAllAds("/home/mangat/userLabels.csv");
         DataLoader.makeMapping();
     }

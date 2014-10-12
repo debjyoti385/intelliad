@@ -4,6 +4,8 @@ import com.debjyotipaul.forms.*;
 import com.debjyotipaul.util.ProcessData;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.common.base.Optional;
+import com.google.gson.Gson;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,6 +14,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +51,7 @@ public class SampleResource {
     for(int i = 0 ; i< 50 ; i++){
       Tweet tweet = new Tweet(minx,miny,maxx,maxy);
       tweetList.add(tweet);
-      System.out.println(tweet);
+      //System.out.println(tweet);
     }
 
       MapLocationForm mapLocationForm = new MapLocationForm((minx.get()+maxx.get())/2, (miny.get()+maxy.get())/2, 7 );
@@ -71,7 +76,7 @@ public class SampleResource {
     @Produces({MediaType.APPLICATION_JSON, "application/x-javascript; charset=UTF-8", "application/javascript; charset=UTF-8"})
     public Object getTweets(@QueryParam("minx") Optional<Double> minx,
                            @QueryParam("miny") Optional<Double> miny, @QueryParam("maxx") Optional<Double> maxx,
-                           @QueryParam("maxy") Optional<Double> maxy, @QueryParam("callback") Optional<String> fname) {
+                           @QueryParam("maxy") Optional<Double> maxy, @QueryParam("callback") Optional<String> fname) throws IOException {
 
 
         ProcessData data = new ProcessData(minx.get(), miny.get(),maxx.get(),maxy.get());
@@ -102,9 +107,29 @@ public class SampleResource {
         adCategoryHist.add(new CategoryCountForm("category3",60));
         adCategoryHist.add(new CategoryCountForm("category4",24));
 
+        int numTweet = 50;
+        if (tweets.size() < 50 ){
+          numTweet = tweets.size();
+        }
 
-        IntelliADForm intelliADForm = new IntelliADForm(50,true,mapLocationForm,minx.get(),miny.get(),maxx.get(),maxy.get(),adCategoryHist,tweets);
+        IntelliADForm intelliADForm = new IntelliADForm(50,true,mapLocationForm,minx.get(),miny.get(),maxx.get(),maxy.get(),adCategoryHist,tweets.subList(0, numTweet));
+        
+        FileWriter file = new FileWriter("/Library/WebServer/Documents/histograms.json");
+        try {
+            String jsonStr=new Gson().toJson(new HistogramForm(ad_chart,tweet_chart,user_chart));
+            file.write(jsonStr);
+            System.out.println("Successfully Copied JSON Object to File...");
+            System.out.println("\nJSON Object: " + jsonStr);
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+ 
+        } finally {
+            file.flush();
+            file.close();
+        }
 
+        
         return new JSONPObject(fname.get(), intelliADForm);
     }
 

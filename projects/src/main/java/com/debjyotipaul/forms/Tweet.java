@@ -57,7 +57,7 @@ public  Tweet(Optional<Double> minx, Optional<Double> miny,Optional<Double> maxx
         this.height = 375;
 
         Random randomGenerator = new Random();
-        System.out.println("@@@"+(int)(Math.abs(maxx.get() - minx.get())));
+        //System.out.println("@@@"+(int)(Math.abs(maxx.get() - minx.get())));
         int randomX = randomGenerator.nextInt((int)(Math.abs(maxx.get() - minx.get())));
        // System.out.println("---"+(int)(Math.abs(maxx.get() - minx.get())));
         int randomY = randomGenerator.nextInt((int)(  Math.abs(maxy.get() - miny.get()   )));
