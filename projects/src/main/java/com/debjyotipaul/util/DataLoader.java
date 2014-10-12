@@ -20,6 +20,7 @@ import com.debjyotipaul.forms.Tweet;
 public class DataLoader {
   static BufferedReader fileReader = null;
   public static Map<Tweet, List<String>> allTweets = new HashMap<Tweet, List<String>>();
+  public static Map<String, List<String>> allAds = new HashMap<String, List<String>>();
   public static Map<String, ArrayList<Integer>> class2AdsClass =
       new HashMap<String, ArrayList<Integer>>();
   public static Map<Integer, String> adIndex2Name = new HashMap<Integer, String>();
@@ -37,7 +38,7 @@ public class DataLoader {
     adIndex2Name.put(4, "Products");
     adIndex2Name.put(5, "Travel");
     adIndex2Name.put(6, "Utility");
-    
+
 
     // Tweet classes
     class2AdsClass.put("Business", new ArrayList<Integer>(Arrays.asList(2, 5)));
@@ -109,14 +110,34 @@ public class DataLoader {
   }
 
   public static void loadAllAds(String filePath) {
+    String line = "";
+    String adCatName = adIndex2Name.get(Integer.parseInt(filePath.split("-")[1]));
+    // Create the file reader
+    try {
+      fileReader = new BufferedReader(new FileReader(filePath));
+      while ((line = fileReader.readLine()) != null) {
+        // Get all tokens available in line
+        String[] tokens = line.split("\u0001");
+        if (allAds.containsKey(adCatName)) {
+          allAds.get(adCatName).add(tokens[0]);
+        } else {
+          allAds.put((adCatName), (new ArrayList<String>(Arrays.asList(new String[] {tokens[0]}))));
 
+        }
+      }
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
   }
 
   public static void main(String args[]) {
     DataLoader.loadAllTweets("/home/mangat/userLabels.csv", false);
     // DataLoader.loadAllTweets("/home/mangat/tweetLabels.csv", true);
-    loadAllAds("/home/mangat/userLabels.csv");
-    // System.out.println(allTweets);
     DataLoader.makeMapping();
+    for(int i = 0;i<7;i++){
+    loadAllAds("/home/mangat/Downloads/imContent.csv-"+i);
+    }
+     System.out.println(allAds);
   }
 }

@@ -81,7 +81,7 @@ public class SampleResource {
 
         ProcessData data = new ProcessData(minx.get(), miny.get(),maxx.get(),maxy.get());
 
-        List<Tweet> tweets = data.getCurrentTweets();
+        List<Tweet> tweets = data.getSampleTweets();
         data.makeHistograms();
 
         ad_chart.clear();

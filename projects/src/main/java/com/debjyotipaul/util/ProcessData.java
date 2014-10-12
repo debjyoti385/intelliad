@@ -2,7 +2,12 @@ package com.debjyotipaul.util;
 
 import com.debjyotipaul.forms.Tweet;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.sql.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +16,7 @@ import java.util.Map.Entry;
 public class ProcessData {
 
   List<Tweet> currentTweets;
+
   double minx, miny, maxx, maxy;
 
   public Map<String, Double> adHistogram;
@@ -60,10 +66,10 @@ public class ProcessData {
     }
     normalize(adHistogram);
     normalize(tweetHistogram);
-    normalize(userHistogram);    
-    System.out.println("ADS::"+adHistogram);
-    System.out.println("TWEET"+tweetHistogram);
-    System.out.println("USER"+userHistogram);
+    normalize(userHistogram);
+    System.out.println("ADS::" + adHistogram);
+    System.out.println("TWEET" + tweetHistogram);
+    System.out.println("USER" + userHistogram);
   }
 
   public boolean isWithin(Tweet t) {
@@ -82,15 +88,40 @@ public class ProcessData {
 
   }
 
-  public void normalize(Map<String, Double> histogram){
-   double sum = 0; 
-   for(Double val : histogram.values()){
-     sum+=val;
-   }
-   for(Entry<String, Double>E :histogram.entrySet()){ 
-     E.setValue(E.getValue()*100/sum);
-   } 
+  public void normalize(Map<String, Double> histogram) {
+    double sum = 0;
+    for (Double val : histogram.values()) {
+      sum += val;
+    }
+    for (Entry<String, Double> E : histogram.entrySet()) {
+      E.setValue(E.getValue() * 100 / sum);
+    }
   }
+
+  public List<Tweet> getSampleTweets() {
+    List<Tweet> tweetList = new ArrayList<Tweet>();
+    if (currentTweets.size() <= 2000)
+      return currentTweets;
+    for (int i = 0; i < 100; i++) {
+      tweetList.add(currentTweets.get((int) (Math.random() * currentTweets.size())));
+    }
+    return tweetList;
+  }
+
+  public List<Tweet> getSampleAds() {
+    List<Tweet> adList = new ArrayList<Tweet>();
+    for (Entry<String, List<String>> ads : DataLoader.allAds.entrySet()) {
+      String category = ads.getKey();
+      String path = ads.getValue().get((int) (Math.random() * ads.getValue().size()));
+      SimpleDateFormat sdf = new SimpleDateFormat("dd MMMMMMMMMMMM yyyy");
+      adList.add(new Tweet(375, 76.0, 76.0, "", 0, category, "",
+          "http://localhost:/"+path,
+          "", "", 500, 475995));
+      // create object here
+    }
+    return adList;
+  }
+
   /**
    * @param args
    */
@@ -104,7 +135,10 @@ public class ProcessData {
     ProcessData Data = new ProcessData(-74.2557, 40.4957, -74.2000, 40.9176);
     Data.getCurrentTweets();
     Data.makeHistograms();
-    System.out.println(Data.currentTweets.size());
+    for(int i = 0;i<7;i++){
+    DataLoader.loadAllAds("/home/mangat/Downloads/imContent.csv-"+i);
+    }
+    System.out.println(Data.getSampleAds());
   }
 
 }
