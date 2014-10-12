@@ -42,6 +42,9 @@ public class IntelliADForm extends Object {
     @JsonProperty
     List<Tweet> photos;
 
+    @JsonProperty
+    List<Tweet> ads;
+
     public IntelliADForm(int count, boolean has_more, MapLocationForm map_location, double minx, double miny, double maxx, double maxy, List<CategoryCountForm> adCategoryHist, List<Tweet> photos) {
         this.count = count;
         this.has_more = has_more;
