@@ -7,24 +7,27 @@ The idea is to tag all geo-location enabled tweets(available publicly) with sema
 
 
 ## API's ##
-GET Request: http://localhost/ads/tweets
+**GET Request: http://localhost/ads/tweets**
+
 @QueryParam("minx") = Latitude South
 @QueryParam("miny") = Longitude West 
 @QueryParam("maxx") = Latitude North
 @QueryParam("maxy") = Longitude East
 @QueryParam("callback") = Javascript callback function name (since cross domain request)
 
-GET Request: http://localhost/ads/histograms
+**GET Request: http://localhost/ads/histograms**
+
 Histogram of categories of Users, Tweets and Ads can be served over requested geo location
 
-GET Request: http://localhost/ads/adImages
+**GET Request: http://localhost/ads/adImages**
+
 Get ads and its information along with URL appropriate to serve over that geo location.
 
-GET Request: http://localhost/ads/dummy
+**GET Request: http://localhost/ads/dummy**
+
 To test
 
 ## UI ##
-Screenshot:
 ![IntelliAd](https://github.com/debjyoti385/intelliad/raw/master/intelliad.png "IntelliAd")
 
 
