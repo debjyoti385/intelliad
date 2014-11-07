@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>IntelliAD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../lib/timeline/timeline.css">
+
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap-responsive.css" >
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../dist/css/dvf.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../css/example.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../css/ui.css" type="text/css" media="screen" />
+    <!--<script src="http://d3js.org/d3.v3.min.js"></script>-->
+    <script type="text/javascript" src="http://d3js.org/d3.v2.js"></script>
+	<style>   
+		body {
+			overflow-x: hidden;
+		}   
+        
+  a.hovertext {
+    position: relative;
+    width: 500px;
+    text-decoration: none !important;
+    text-align: center;
+  }
+  a.hovertext:after {
+    content: attr(title);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 0.5em 20px;
+    width: 460px;
+    background: rgba(0,0,0,0.8);
+    text-decoration: none !important;
+    color: #fff;
+    opacity: 0;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+  }
+  a.hovertext:hover:after, a.hovertext:focus:after {
+    opacity: 1.0;
+  }
+
+
+		#gallery-wrapper {
+			position: absolute;
+			top: 52px;
+			right: 10px;
+			width: 300px;
+			height: 300px;
+			overflow-y: scroll;
+			overflow-x: hidden;
+			z-index: 20000;
+			border: solid 1px rgba(0, 0, 0, 0.7);
+			border-right-width: 10px;
+			border-left-width: 10px;
+			border-radius: 10px;
+			background-color: rgba(0, 0, 0, 0.5);
+			box-shadow: 2px 2px 3px rgba(100, 100, 100, 0.5);
+		}
+		#gallery {
+			width: 300px;
+			height: 300px;
+			z-index: 20000;
+		}
+		
+		#gallery img {
+			vertical-align: middle;
+			cursor: pointer;
+		}
+		
+		#timeline {
+			height: 15%;
+			width: 99.99%;
+			padding: 0px;
+			margin: 0px;
+		}
+      
+      	#timeline img.photo {
+      		height: 20px !important;
+      		width: auto !important;
+			opacity: 0;
+			box-shadow: none;
+			-moz-transition: opacity 0.5s; /* Firefox 4 */
+			-webkit-transition: opacity 0.5s; /* Safari and Chrome */
+			-o-transition: opacity 0.5s;
+			transition: opacity 0.5s;
+			padding: 0px;
+			margin: 0px;
+		}
+		
+		div.timeline-event-box {
+			padding: 0px !important;
+			margin: 0px !important;
+			box-shadow: 2px 2px 3px rgba(100, 100, 100, 0.4);
+			border: solid 1px rgba(150, 150, 150, 0.2);
+			background-color: white;
+			border-radius: 0px;
+		}
+		
+		div.timeline-event-content {
+			margin: 2px;
+		}
+		
+		div.container-fluid {
+			margin: 0px;
+			padding: 0px;
+		}
+		
+		.search-query {
+			width: 400px;
+		}
+		
+		#map {
+			width: 100%;
+			height:85%;
+		}
+        .bar {fill: steelblue;}
+        .bar.Entertainment {fill: green;}
+        .bar.Games {fill: orange;}
+        .bar.News {fill: yellow;}
+        .bar.Social {fill: purple;}
+        .bar.Products {fill: steelblue;}
+        .bar.Travel {fill: steelblue;}
+        .bar.Arts {fill: lightblue;}
+        .bar.Commodity {fill: mediumslateblue;}
+        .bar.Religion {fill: burlywood;}
+        .bar.Business {fill: ghostwhite;}
+        .bar.Student {fill: yellow;}
+        .bar.Casual {fill: slategray;}
+        .bar.Organisation {fill: royalblue;}
+        .bar.Sports {fill: orange;}
+        .bar.Religious {fill: steelblue;}
+        .bar.Utility {fill: steelblue;}
+		.bar.category1 { fill: green; }
+		.bar.category2 { fill: orange; }
+		.bar.category3 { fill: yellow; }
+		.bar.plums { fill: purple; }
+
+    </style>
+</head>
+
+<body>
+	<div class="navbar navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">IntelliAd</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">The_Who</a></li>
+            </ul>
+          </div>  
+          <form class="navbar-search pull-right">
+			  <input type="text" class="search-query" placeholder="Search">
+			</form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+    	<div id="gallery-wrapper" class="photo-item">
+    		<div id="gallery"></div>
+    	</div>
+		<div id="map"></div>
+		<div id="timeline"></div>
+	<div style="position:absolute; left:20px; top:50px;font-weight:bold; ">TWEET HISTOGRAM</div>
+        <div id="tweet_chart" style="position:absolute; left:10px; top:65px; opacity:0.7;"></div>
+	<div style="position:absolute; left:20px; top:300px;font-weight:bold; ">USER HISTOGRAM</div>
+        <div id="user_chart" style="position:absolute; left:10px; top:320px; opacity:0.7;"></div>
+	<div style="position:absolute; left:20px; top:500px;font-weight:bold; ">AD HISTOGRAM</div>
+        <div id="ad_chart" style="position:absolute; left:10px; top:520px; opacity:0.7;"></div>
+	</div>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
+	<script type="text/javascript" src="../lib/timeline/timeline.js"></script>
+	<script type="text/javascript" src="../lib/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<script type="text/javascript" src="../lib/date.format.js"></script>
+	<script type="text/javascript" src="../../dist/leaflet-dvf.js"></script>
+	<script type="text/javascript" src="../../src/leaflet.dvf.datalayer.js"></script>
+	<script type="text/javascript" src="../js/chromaticgallery.js"></script>
+	<script type="text/javascript" src="../js/panoramio.js"></script>
+    <script type="text/javascript" src ="bar.js"></script> 
+<!--    <script>
+
+var histogram_data = [4, 8, 15, 16, 23, 42];
+
+var x = d3.scale.linear()
+    .domain([0, d3.max(histogram_data)])
+    .range([0, 420]);
+
+d3.select(".chart")
+  .selectAll("div")
+    .data(histogram_data)
+  .enter().append("div")
+    .style("width", function(d) { return x(d) + "px"; })
+    .text(function(d) { return d; });
+
+</script> -->
+</body>
+</html>
