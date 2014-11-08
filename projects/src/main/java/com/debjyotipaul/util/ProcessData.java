@@ -4,10 +4,6 @@ import com.debjyotipaul.forms.Tweet;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.sql.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -127,17 +123,18 @@ public class ProcessData {
    */
   public static void main(String[] args) {
     // TODO Auto-generated method stub
-    DataLoader.loadAllTweets("/home/mangat/tweetLabels.csv", true);
-    DataLoader.loadAllTweets("/home/mangat/userLabels.csv", false);
+    DataLoader.loadAllTweets("/var/www/intelliad/tweetLabels.csv", true);
+    DataLoader.loadAllTweets("/var/www/intelliad/userLabels.csv", false);
     // loadAllAds("/home/mangat/userLabels.csv");
     DataLoader.makeMapping();
     // ProcessData Data = new ProcessData(-74.2557, 40.4957, -73.6895, 40.9176);
     ProcessData Data = new ProcessData(-74.2557, 40.4957, -74.2000, 40.9176);
     Data.getCurrentTweets();
     Data.makeHistograms();
-    for(int i = 0;i<7;i++){
-    DataLoader.loadAllAds("/home/mangat/Downloads/imContent.csv-"+i);
-    }
+      DataLoader.loadAllAds("/var/www/intelliad/imContentsample.csv");
+//    for(int i = 0;i<7;i++){
+//    DataLoader.loadAllAds("/var/www/intelliad/imContent.csv-"+i);
+//    }
     System.out.println(Data.getSampleAds());
   }
 

@@ -1,21 +1,12 @@
 package com.debjyotipaul.util;
 
+import com.debjyotipaul.forms.Tweet;
+
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import com.debjyotipaul.forms.Tweet;
+import java.util.*;
 
 public class DataLoader {
   static BufferedReader fileReader = null;
@@ -132,12 +123,13 @@ public class DataLoader {
   }
 
   public static void main(String args[]) {
-    DataLoader.loadAllTweets("/home/mangat/userLabels.csv", false);
+    DataLoader.loadAllTweets("/var/www/intelliad/userLabels.csv", false);
     // DataLoader.loadAllTweets("/home/mangat/tweetLabels.csv", true);
     DataLoader.makeMapping();
-    for(int i = 0;i<7;i++){
-    loadAllAds("/home/mangat/Downloads/imContent.csv-"+i);
-    }
+    loadAllAds("/var/www/intelliad/imContentsample.csv");
+//    for(int i = 0;i<7;i++){
+//    loadAllAds("/var/www/intelliad/imContent.csv-"+i);
+//    }
      System.out.println(allAds);
   }
 }
