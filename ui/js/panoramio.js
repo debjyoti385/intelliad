@@ -96,7 +96,7 @@ $(document).ready(function() {
 			}
 			var photoItem = {
 				start: start,
-                content: '<img class="photo" title="' + caption + '"onload="this.style.opacity=1" src="../marker_icon/tweetbutton.jpg"  data-id="'+index +'"/>'+ caption.substring(0,20),
+                content: '<img class="photo" title="' + caption + '"onload="this.style.opacity=1" src="marker_icon/tweetbutton.jpg"  data-id="'+index +'"/>'+ caption.substring(0,20),
                 //content: '"<img class="' + photo['photo_title'].substring(0,20) + '">', 
 				//content: '<img class="photo" title="' + photo['photo_title'] + '" onload="this.style.opacity=1" src="' + url + '" height="64" data-id="' + index + '"/>',
 				className: 'photo-item'

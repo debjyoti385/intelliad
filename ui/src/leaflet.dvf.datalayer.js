@@ -1135,7 +1135,7 @@ L.PanoramioLayer = L.PanoramioLayer.extend({
 		},
 		onEachRecord: function (layer, record) {
 			//var photoUrl = record['photo_file_url'];
-			var photoUrl = '../marker_icon/tweet_back.jpg';
+			var photoUrl = 'marker_icon/tweet_back.jpg';
 		        var title = "";
                         if (record['photo_title'].length > 1){
                                 title = record['photo_title'];
@@ -1163,7 +1163,7 @@ L.PanoramioLayer = L.PanoramioLayer.extend({
                 photoInfo.style.paddingTop = '30px';
 				photoInfo.innerHTML = '<span style="font-size: 200%;">' + title + '</span>' +
 						      '<a class="photo-link" target="_blank" href="#">' +
-						      '<img src="../marker_icon/tweetbutton.jpg" style="height: 30px; opacity=0.8"/>' +
+						      '<img src="marker_icon/tweetbutton.jpg" style="height: 30px; opacity=0.8"/>' +
 						      '</a>';
 
 				var authorLink = L.DomUtil.create('a', 'author-link', content);
@@ -1213,9 +1213,9 @@ L.PanoramioLayer = L.PanoramioLayer.extend({
 				iconSize: iconSize,
 				className: ''
 				//html: '<img class="photo" onload="this.style.opacity=1" title="' + title + '" src="' + url + '"/>'
-				//html: '<img class="photo" onload="this.style.opacity=1" title="' + title + '" src="../marker_icon/bluePin.png"/>'
+				//html: '<img class="photo" onload="this.style.opacity=1" title="' + title + '" src="marker_icon/bluePin.png"/>'
 			});
-            return new L.Icon({iconUrl: '../marker_icon/bluePin.png',iconSize:[30, 30],iconAnchor:[15, 15],popupAnchor:  [-10, -50]});
+            return new L.Icon({iconUrl: 'marker_icon/bluePin.png',iconSize:[30, 30],iconAnchor:[15, 15],popupAnchor:  [-10, -50]});
 			//return icon;
 		},
 		updateInterval: 300000,
