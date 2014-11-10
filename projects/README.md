@@ -1,7 +1,8 @@
-dropwizard-sample
-=================
+intelliad backend server
+========================
 
-Sample Project of dropwizard
+Dropwizard project
 
-Run Command:
-java -jar target/projects-1.0-SNAPSHOT.jar server src/main/resources/sample.yml
+##Run Commands:##
+mvn clean install
+java -jar target/dropwizard-sample-1.0-SNAPSHOT.jar server src/main/resources/sample.yml
