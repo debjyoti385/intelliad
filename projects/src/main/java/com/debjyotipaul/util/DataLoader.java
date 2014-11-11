@@ -5,7 +5,6 @@ import com.debjyotipaul.forms.Tweet;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class DataLoader {
@@ -67,30 +66,25 @@ public class DataLoader {
       // Read the file line by line
       while ((line = fileReader.readLine()) != null) {
         // Get all tokens available in line
-        String[] tokens = line.split("\u0001");
-        // System.out.println(tokens.length);
+        String[] tokens = line.split("\t");
         int len = tokens.length;
-        if (len < 4)
-          continue;
-        if (!(tokens[len - 1].isEmpty() || tokens[len - 2].isEmpty())) {
-          if (isTweet) {
-            tText = tokens[0];
-          } else {
-            uText = tokens[0];
-          }
 
-          SimpleDateFormat sdf = new SimpleDateFormat("dd MMMMMMMMMMMM yyyy");
-          Calendar cal = new GregorianCalendar(2014, 8, (int) (Math.random() * 29 + 1));
-          String upload_date = sdf.format(cal.getTime());
+        if (!(tokens[4].isEmpty() || tokens[5].isEmpty())) {
+
+//          for (int i=0; i<len;i++){
+//              System.out.println(i+" -- " + tokens[i]);
+//          }
 
 
           Tweet t =
-              new Tweet(375, Double.parseDouble(tokens[len - 2]),
-                  Double.parseDouble(tokens[len - 1]), tText, 11630238, uText,
-                  "http://www.panoramio.com/user/475995",
-                  "http://mw2.google.com/mw-panoramio/photos/medium/11630238.jpg",
-                  "http://www.panoramio.com/photo/11630238", upload_date, 500, 475995);
-          allTweets.put(t, Arrays.asList((tokens[1].split(","))));
+                  new Tweet(375,Double.parseDouble(tokens[4]),Double.parseDouble(tokens[5]),tokens[2],Long.parseLong(tokens[0]),
+                          "",
+                          "http://www.panoramio.com/user/475995","http://mw2.google.com/mw-panoramio/photos/medium/11630238.jpg",
+                          "http://www.panoramio.com/photo/11630238",tokens[7],500,475995);
+
+          List<String> categories = new ArrayList<String>();
+          categories.add("category1");
+          allTweets.put(t,categories);
         }
       }
     } catch (IOException e) {
@@ -108,7 +102,7 @@ public class DataLoader {
       fileReader = new BufferedReader(new FileReader(filePath));
       while ((line = fileReader.readLine()) != null) {
         // Get all tokens available in line
-        String[] tokens = line.split("\u0001");
+        String[] tokens = line.split("\t");
         if (allAds.containsKey(adCatName)) {
           allAds.get(adCatName).add(tokens[0]);
         } else {
@@ -123,13 +117,14 @@ public class DataLoader {
   }
 
   public static void main(String args[]) {
-    DataLoader.loadAllTweets("/var/www/intelliad/userLabels.csv", false);
-    // DataLoader.loadAllTweets("/home/mangat/tweetLabels.csv", true);
-    DataLoader.makeMapping();
-    loadAllAds("/var/www/intelliad/imContentsample.csv");
+    //DataLoader.loadAllTweets("/var/www/intelliad/userLabels.csv", false);
+    DataLoader.loadAllTweets("/var/www/intelliad/tweetLabel.csv", true);
+    //DataLoader.makeMapping();
+    //loadAllAds("/var/www/intelliad/imContentsample.csv");
 //    for(int i = 0;i<7;i++){
 //    loadAllAds("/var/www/intelliad/imContent.csv-"+i);
 //    }
-     System.out.println(allAds);
+//    System.out.println(allAds);
+      System.out.println(allTweets);
   }
 }

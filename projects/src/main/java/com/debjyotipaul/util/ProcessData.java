@@ -35,37 +35,17 @@ public class ProcessData {
   public void makeHistograms() {
     for (Tweet t : currentTweets) {
       for (String str : DataLoader.allTweets.get(t)) {
-        if (!t.photo_title.isEmpty()) {
           if (tweetHistogram.containsKey(str)) {
             tweetHistogram.put(str, tweetHistogram.get(str) + 1);
           } else {
             tweetHistogram.put(str, new Double(1));
           }
-
-        } else {
-          if (userHistogram.containsKey(str)) {
-            userHistogram.put(str, userHistogram.get(str) + 1);
-          } else {
-            userHistogram.put(str, new Double(1));
-          }
-        }
         // System.out.println(str);
-        for (Integer adCat : DataLoader.class2AdsClass.get(str)) {
-          if (adHistogram.containsKey(DataLoader.adIndex2Name.get(adCat))) {
-            adHistogram.put(DataLoader.adIndex2Name.get(adCat),
-                adHistogram.get(DataLoader.adIndex2Name.get(adCat)) + 1);
-          } else {
-            adHistogram.put(DataLoader.adIndex2Name.get(adCat), new Double(1));
-          }
-        }
       }
     }
-    normalize(adHistogram);
+
     normalize(tweetHistogram);
-    normalize(userHistogram);
-    System.out.println("ADS::" + adHistogram);
     System.out.println("TWEET" + tweetHistogram);
-    System.out.println("USER" + userHistogram);
   }
 
   public boolean isWithin(Tweet t) {

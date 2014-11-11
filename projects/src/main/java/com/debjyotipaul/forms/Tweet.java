@@ -20,7 +20,7 @@ public class Tweet {
 @JsonProperty
   public String photo_title; //text
 @JsonProperty
-  public int photo_id;
+  public long photo_id;
 @JsonProperty
   public String owner_name; //user descirption
 @JsonProperty
@@ -35,7 +35,7 @@ public String upload_date;
 public int width;
 @JsonProperty
 public int owner_id;
-public Tweet(int height, double latitude, double longitude, String photo_title, int photo_id,
+public Tweet(int height, double latitude, double longitude, String photo_title, long photo_id,
     String owner_name, String owner_url, String photo_file_url, String photo_url,
     String upload_date, int width, int owner_id) {
   super();
@@ -103,10 +103,10 @@ public String getPhoto_title() {
 public void setPhoto_title(String photo_title) {
   this.photo_title = photo_title;
 }
-public int getPhoto_id() {
+public long getPhoto_id() {
   return photo_id;
 }
-public void setPhoto_id(int photo_id) {
+public void setPhoto_id(long photo_id) {
   this.photo_id = photo_id;
 }
 public String getOwner_name() {

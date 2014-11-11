@@ -5,7 +5,6 @@ import com.debjyotipaul.util.ProcessData;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.common.base.Optional;
 import com.google.gson.Gson;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +13,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -88,26 +86,26 @@ public class SampleResource {
         tweet_chart.clear();
         user_chart.clear();
         
-        for (String key: data.adHistogram.keySet()){
-            ad_chart.add(new CategoryCountForm(key,data.adHistogram.get(key)));
-        }
+//        for (String key: data.adHistogram.keySet()){
+//            ad_chart.add(new CategoryCountForm(key,data.adHistogram.get(key)));
+//        }
         
-        System.out.println("----"+data.adHistogram);
+//        System.out.println("----"+data.adHistogram);
 
         for (String key: data.tweetHistogram.keySet()){
             tweet_chart.add(new CategoryCountForm(key,data.tweetHistogram.get(key)));
         }
-        for (String key: data.userHistogram.keySet()){
-            user_chart.add(new CategoryCountForm(key,data.userHistogram.get(key)));
-        }
+//        for (String key: data.userHistogram.keySet()){
+//            user_chart.add(new CategoryCountForm(key,data.userHistogram.get(key)));
+//        }
 
         MapLocationForm mapLocationForm = new MapLocationForm((minx.get()+maxx.get())/2, (miny.get()+maxy.get())/2, 7 );
 
         List<CategoryCountForm> adCategoryHist= new ArrayList<CategoryCountForm>();
-        adCategoryHist.add(new CategoryCountForm("category1", 10));
-        adCategoryHist.add(new CategoryCountForm("category2",30));
-        adCategoryHist.add(new CategoryCountForm("category3",60));
-        adCategoryHist.add(new CategoryCountForm("category4",24));
+//        adCategoryHist.add(new CategoryCountForm("category1", 10));
+//        adCategoryHist.add(new CategoryCountForm("category2",30));
+//        adCategoryHist.add(new CategoryCountForm("category3",60));
+//        adCategoryHist.add(new CategoryCountForm("category4",24));
 
         int numTweet = 50;
         if (tweets.size() < 50 ){
@@ -118,14 +116,14 @@ public class SampleResource {
         
         FileWriter file = new FileWriter("/var/www/histograms.json");
         try {
-            String jsonStr=new Gson().toJson(new HistogramForm(ad_chart,tweet_chart,user_chart));
+            String jsonStr=new Gson().toJson(new HistogramForm(tweet_chart));
             file.write(jsonStr);
             System.out.println("Successfully Copied JSON Object to File...");
             System.out.println("\nJSON Object: " + jsonStr);
  
         } catch (IOException e) {
             e.printStackTrace();
- 
+            System.out.println("ERROR");
         } finally {
             file.flush();
             file.close();
@@ -139,6 +137,6 @@ public class SampleResource {
     @Path("histograms")
     @Produces({MediaType.APPLICATION_JSON, "application/x-javascript; charset=UTF-8", "application/javascript; charset=UTF-8"})
     public Object getHistograms() {
-        return new HistogramForm(ad_chart,tweet_chart,user_chart);
+        return new HistogramForm(tweet_chart);
     }
 }
