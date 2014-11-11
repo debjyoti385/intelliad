@@ -5,6 +5,8 @@ import com.debjyotipaul.forms.Tweet;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class DataLoader {
@@ -75,23 +77,32 @@ public class DataLoader {
 //              System.out.println(i+" -- " + tokens[i]);
 //          }
 
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Calendar calendar = Calendar.getInstance();
+            Date date = formatter.parse(tokens[7]);
+
+          SimpleDateFormat sdf = new SimpleDateFormat("dd MMMMMMMMMMMM yyyy HH:mm:ss");
+          calendar.setTime(date);
+          String upload_date = sdf.format(calendar.getTime());
 
           Tweet t =
                   new Tweet(375,Double.parseDouble(tokens[4]),Double.parseDouble(tokens[5]),tokens[2],Long.parseLong(tokens[0]),
                           "",
                           "http://www.panoramio.com/user/475995","http://mw2.google.com/mw-panoramio/photos/medium/11630238.jpg",
-                          "http://www.panoramio.com/photo/11630238",tokens[7],500,475995);
+                          "http://www.panoramio.com/photo/11630238",upload_date,500,475995);
 
           List<String> categories = new ArrayList<String>();
-          categories.add("category1");
+          categories.add(tokens[11]);
           allTweets.put(t,categories);
         }
       }
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
+    } catch (ParseException e) {
+        e.printStackTrace();
     }
-    System.out.println("All Tweets" + allTweets.size());
+      System.out.println("All Tweets" + allTweets.size());
   }
 
   public static void loadAllAds(String filePath) {

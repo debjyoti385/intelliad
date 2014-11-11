@@ -3,10 +3,7 @@ package com.debjyotipaul.util;
 import com.debjyotipaul.forms.Tweet;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 public class ProcessData {
@@ -31,8 +28,23 @@ public class ProcessData {
     this.miny = miny;
 
   }
+    private class HistObject{
+        String category;
+        Double count;
+
+        private HistObject(String category, Double count) {
+            this.category = category;
+            this.count = count;
+        }
+    }
 
   public void makeHistograms() {
+      final int k = 5;
+      PriorityQueue<HistObject> histQueue = new PriorityQueue<HistObject>(k, new Comparator<HistObject>() {
+          public int compare(HistObject obj1, HistObject obj2) {
+              return (obj1.count > obj2.count) ? -1 : 1;
+          }
+      });
     for (Tweet t : currentTweets) {
       for (String str : DataLoader.allTweets.get(t)) {
           if (tweetHistogram.containsKey(str)) {
@@ -43,7 +55,20 @@ public class ProcessData {
         // System.out.println(str);
       }
     }
+    for (String category : tweetHistogram.keySet()){
+        histQueue.add(new HistObject(category,tweetHistogram.get(category)));
+    }
 
+
+    tweetHistogram.clear();
+      int i =0;
+      while(true){
+          HistObject obj = histQueue.poll();
+          if(obj== null || i >=k)
+              break;
+          tweetHistogram.put(obj.category,obj.count);
+          i++;
+      }
     normalize(tweetHistogram);
     System.out.println("TWEET" + tweetHistogram);
   }
