@@ -22,7 +22,7 @@ $(document).ready(function() {
 	resize();
 	
 	// Initialize the map
-	map = L.map('map').setView([40.75,-73.90], 7);
+	map = L.map('map').setView([41.510056,-95.0924184], 4);
 	
 	// Add Mapquest tile layer
 	var baseLayer = L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
@@ -85,7 +85,7 @@ $(document).ready(function() {
 		onEachPhoto: function (layer, photo) {
 			var uploaded = photo['upload_date'];
 			var url = photo['photo_file_url'];
-			var startMoment = moment(uploaded, 'DD MMM YYYY');
+			var startMoment = moment(uploaded, 'DD MMM YYYY h:mm:ss');
 			var start = startMoment.toDate();
 			var caption = "";
 			if (photo['photo_title'].length > 1){
