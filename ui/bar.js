@@ -1,26 +1,26 @@
 setInterval(function(){
       // method to be executed;
-		var w = 300,
+		var w = 200,
 		    h = 125;
         d3.select('svg').remove();
         d3.select('svg').remove();
         d3.select('svg').remove();
 		
-//        var ad_svg = d3.select("#ad_chart")
-//			.append("svg")
-//			.attr("width", w)
-//			.attr("height", h);
+        var ad_svg = d3.select("#ad_chart")
+			.append("svg")
+			.attr("width", w)
+			.attr("height", h);
 
 
-//        var user_svg = d3.select("#user_chart")
-//			.append("svg")
-//			.attr("width", w)
-//			.attr("height", (h+50) );
+        var user_svg = d3.select("#user_chart")
+			.append("svg")
+			.attr("width", w)
+			.attr("height",h);
 
         var tweet_svg = d3.select("#tweet_chart")
 			.append("svg")
 			.attr("width", w)
-			.attr("height", (h) );
+			.attr("height", h);
 
         d3.json("http://localhost/histograms.json", function(json) {
 	
@@ -116,7 +116,7 @@ setInterval(function(){
 				//max_n = Math.max(data[d].n, max_n);
 				max_n = Math.max(data[d].value, max_n);
 			}
-			 h= h - 50;
+			 h= h;
 			 dx = w / max_n;
 			 dy = h / data.length;
 	

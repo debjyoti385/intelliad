@@ -108,11 +108,15 @@ public class SampleResource {
           numTweet = nutritionTweets.size();
         }
 
-        IntelliADForm intelliADForm = new IntelliADForm(50,true,mapLocationForm,minx.get(),miny.get(),maxx.get(),maxy.get(),adCategoryHist,nutritionTweets.subList(0, numTweet));
+        List<Tweet> outputTweets = new ArrayList<Tweet>();
+        outputTweets.addAll(nutritionTweets.subList(0,numTweet));
+        outputTweets.addAll(healthTweets.subList(0,healthTweets.size()<numTweet?healthTweets.size():numTweet));
+
+        IntelliADForm intelliADForm = new IntelliADForm(50,true,mapLocationForm,minx.get(),miny.get(),maxx.get(),maxy.get(),adCategoryHist,outputTweets);
         
         FileWriter file = new FileWriter("/var/www/histograms.json");
         try {
-            String jsonStr=new Gson().toJson(new HistogramForm(tweet_chart));
+            String jsonStr=new Gson().toJson(new HistogramForm(ad_chart,tweet_chart,user_chart));
             file.write(jsonStr);
             System.out.println("Successfully Copied JSON Object to File...");
             System.out.println("\nJSON Object: " + jsonStr);
@@ -133,6 +137,6 @@ public class SampleResource {
     @Path("histograms")
     @Produces({MediaType.APPLICATION_JSON, "application/x-javascript; charset=UTF-8", "application/javascript; charset=UTF-8"})
     public Object getHistograms() {
-        return new HistogramForm(tweet_chart);
+        return new HistogramForm(ad_chart,tweet_chart,user_chart);
     }
 }

@@ -23,6 +23,7 @@ public class ProcessData {
   public ProcessData(double minx, double miny, double maxx, double maxy) {
     // TODO Auto-generated constructor stub
     currentNutritionTweets = new ArrayList<Tweet>();
+    currentHealthTweets = new ArrayList<Tweet>();
     tweetHealthHistogram = new HashMap<String, Double>();
     tweetNutritionHistogram = new HashMap<String, Double>();
     userHealthHistogram = new HashMap<String, Double>();

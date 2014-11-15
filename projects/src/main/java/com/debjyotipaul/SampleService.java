@@ -36,7 +36,8 @@ public class SampleService extends Application<SampleServiceConfiguration> {
     @Override
     public void initialize(Bootstrap<SampleServiceConfiguration> bootstrap) {
         //Nothing to do
-        DataLoader.loadAllNutritionTweets("/var/www/intelliad/tweetLabel.csv", true);
+        DataLoader.loadAllNutritionTweets("/var/www/intelliad/nutritionLabel.csv");
+        DataLoader.loadAllHealthTweets("/var/www/intelliad/healthLabel.csv");
 //        DataLoader.loadAllNutritionTweets("/var/www/intelliad/tweetLabels.csv", true);
 //        DataLoader.loadAllNutritionTweets("/var/www/intelliad/userLabels.csv", false);
 //        // loadAllAds("/home/mangat/userLabels.csv");
