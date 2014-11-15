@@ -79,7 +79,7 @@
 		}
 		
 		#timeline {
-			height: 15%;
+			height: 1%;
 			width: 99.99%;
 			padding: 0px;
 			margin: 0px;
@@ -122,7 +122,7 @@
 		
 		#map {
 			width: 100%;
-			height:85%;
+			height:100%;
 		}
         .bar {fill: steelblue;}
         .bar.cancer {fill: red;}
@@ -177,8 +177,10 @@
         </div> -->
 		<div id="map"></div>
 		<div id="timeline"></div>
-	<div style="position:absolute; right:150px; top:50px;font-weight:bold; ">HEALTH TWEETS HISTOGRAM</div>
-        <div id="tweet_chart" style="position:absolute; right:20px; top:75px; opacity:0.7;"></div>
+        <div id="histograms" style="position:absolute;opacity:0.7; bottom:0px; width:100%;height:150px;background:url(marker_icon/background.png) repeat;">
+        	<div style="position:absolute; left:10px; top:0px;font-weight:bold; ">HEALTH TWEETS HISTOGRAM</div>
+            <div id="tweet_chart" style="position:absolute; left:10px; top:20px; opacity:1;"></div>
+        </div>
 <!--	<div style="position:absolute; left:20px; top:300px;font-weight:bold; ">USER HISTOGRAM</div>
         <div id="user_chart" style="position:absolute; left:10px; top:320px; opacity:0.7;"></div>
 	<div style="position:absolute; left:20px; top:500px;font-weight:bold; ">AD HISTOGRAM</div>

@@ -1,7 +1,7 @@
 setInterval(function(){
       // method to be executed;
 		var w = 300,
-		    h = 100;
+		    h = 125;
         d3.select('svg').remove();
         d3.select('svg').remove();
         d3.select('svg').remove();
@@ -20,7 +20,7 @@ setInterval(function(){
         var tweet_svg = d3.select("#tweet_chart")
 			.append("svg")
 			.attr("width", w)
-			.attr("height", (h + 150) );
+			.attr("height", (h) );
 
         d3.json("http://localhost/histograms.json", function(json) {
 	
@@ -73,7 +73,8 @@ setInterval(function(){
 				//max_n = Math.max(data[d].n, max_n);
 				max_n = Math.max(data[d].value, max_n);
 			}
-			 h = h + 100;
+			 //h = h + 100;
+			 h = h;
 			 dx = w / max_n;
 			 dy = h / data.length;
 	

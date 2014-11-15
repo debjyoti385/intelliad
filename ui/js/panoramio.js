@@ -6,8 +6,9 @@ $(document).ready(function() {
 	var resize = function () {
 		var $map = $('#map');
 		
-		$map.height($(window).height() - $('div.navbar').outerHeight() - 150);
+		//$map.height($(window).height() - $('div.navbar').outerHeight() - 150);
 		
+		$map.height($(window).height() );
 		if (map) {
 			map.invalidateSize();
 		}
@@ -40,7 +41,7 @@ $(document).ready(function() {
 	
 	var options = {
 		'width':  '99.99%',
-		'height': '175px',
+		'height': '15px',
 		'editable': false,   // enable dragging and editing events
 		'style': 'box'
 	};
