@@ -79,40 +79,36 @@ public class SampleResource {
 
         ProcessData data = new ProcessData(minx.get(), miny.get(),maxx.get(),maxy.get());
 
-        List<Tweet> tweets = data.getCurrentTweets();
+        List<Tweet> nutritionTweets = data.getCurrentNutritionTweets();
+        List<Tweet> healthTweets = data.getCurrentHealthTweets();
+
         data.makeHistograms();
 
         ad_chart.clear();
         tweet_chart.clear();
         user_chart.clear();
-        
-//        for (String key: data.adHistogram.keySet()){
-//            ad_chart.add(new CategoryCountForm(key,data.adHistogram.get(key)));
-//        }
-        
-//        System.out.println("----"+data.adHistogram);
 
-        for (String key: data.tweetHistogram.keySet()){
-            tweet_chart.add(new CategoryCountForm(key,data.tweetHistogram.get(key)));
+        for (String key: data.tweetNutritionHistogram.keySet()){
+            tweet_chart.add(new CategoryCountForm(key,data.tweetNutritionHistogram.get(key)));
         }
-//        for (String key: data.userHistogram.keySet()){
-//            user_chart.add(new CategoryCountForm(key,data.userHistogram.get(key)));
-//        }
+        for (String key: data.tweetHealthHistogram.keySet()){
+            user_chart.add(new CategoryCountForm(key,data.tweetHealthHistogram.get(key)));
+        }
+        for (String key: data.userHealthHistogram.keySet()){
+            ad_chart.add(new CategoryCountForm(key,data.userHealthHistogram.get(key)));
+        }
 
         MapLocationForm mapLocationForm = new MapLocationForm((minx.get()+maxx.get())/2, (miny.get()+maxy.get())/2, 7 );
 
         List<CategoryCountForm> adCategoryHist= new ArrayList<CategoryCountForm>();
-//        adCategoryHist.add(new CategoryCountForm("category1", 10));
-//        adCategoryHist.add(new CategoryCountForm("category2",30));
-//        adCategoryHist.add(new CategoryCountForm("category3",60));
-//        adCategoryHist.add(new CategoryCountForm("category4",24));
+
 
         int numTweet = 50;
-        if (tweets.size() < 50 ){
-          numTweet = tweets.size();
+        if (nutritionTweets.size() < 50 ){
+          numTweet = nutritionTweets.size();
         }
 
-        IntelliADForm intelliADForm = new IntelliADForm(50,true,mapLocationForm,minx.get(),miny.get(),maxx.get(),maxy.get(),adCategoryHist,tweets.subList(0, numTweet));
+        IntelliADForm intelliADForm = new IntelliADForm(50,true,mapLocationForm,minx.get(),miny.get(),maxx.get(),maxy.get(),adCategoryHist,nutritionTweets.subList(0, numTweet));
         
         FileWriter file = new FileWriter("/var/www/histograms.json");
         try {

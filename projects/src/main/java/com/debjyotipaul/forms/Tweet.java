@@ -34,10 +34,10 @@ public String upload_date;
 @JsonProperty
 public int width;
 @JsonProperty
-public int owner_id;
+public long owner_id;
 public Tweet(int height, double latitude, double longitude, String photo_title, long photo_id,
     String owner_name, String owner_url, String photo_file_url, String photo_url,
-    String upload_date, int width, int owner_id) {
+    String upload_date, int width, long owner_id) {
   super();
   this.height = height;
   this.latitude = latitude;
@@ -145,7 +145,7 @@ public int getWidth() {
 public void setWidth(int width) {
   this.width = width;
 }
-public int getOwner_id() {
+public long getOwner_id() {
   return owner_id;
 }
 public void setOwner_id(int owner_id) {

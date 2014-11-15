@@ -11,7 +11,8 @@ import java.util.*;
 
 public class DataLoader {
   static BufferedReader fileReader = null;
-  public static Map<Tweet, List<String>> allTweets = new HashMap<Tweet, List<String>>();
+  public static Map<Tweet, List<String>> allNutritionTweets = new HashMap<Tweet, List<String>>();
+  public static Map<Tweet, List<String>> allHealthTweets = new HashMap<Tweet, List<String>>();
   public static Map<String, List<String>> allAds = new HashMap<String, List<String>>();
   public static Map<String, ArrayList<Integer>> class2AdsClass =
       new HashMap<String, ArrayList<Integer>>();
@@ -57,25 +58,17 @@ public class DataLoader {
     class2AdsClass.put("Religious", new ArrayList<Integer>(Arrays.asList(0, 3)));
   }
 
-  public static void loadAllTweets(String filePath, boolean isTweet) {
+  public static void loadAllNutritionTweets(String filePath) {
     String line = "";
     // Create the file reader
     try {
       fileReader = new BufferedReader(new FileReader(filePath));
-      String uText = "";
-      String tText = "";
-      // NOt needed
-      // Read the file line by line
       while ((line = fileReader.readLine()) != null) {
         // Get all tokens available in line
         String[] tokens = line.split("\t");
         int len = tokens.length;
 
         if (!(tokens[4].isEmpty() || tokens[5].isEmpty())) {
-
-//          for (int i=0; i<len;i++){
-//              System.out.println(i+" -- " + tokens[i]);
-//          }
 
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Calendar calendar = Calendar.getInstance();
@@ -89,11 +82,11 @@ public class DataLoader {
                   new Tweet(375,Double.parseDouble(tokens[4]),Double.parseDouble(tokens[5]),tokens[2],Long.parseLong(tokens[0]),
                           "",
                           "http://www.panoramio.com/user/475995","http://mw2.google.com/mw-panoramio/photos/medium/11630238.jpg",
-                          "http://www.panoramio.com/photo/11630238",upload_date,500,475995);
+                          "http://www.panoramio.com/photo/11630238",upload_date,500,Long.parseLong(tokens[1]));
 
           List<String> categories = new ArrayList<String>();
           categories.add(tokens[11]);
-          allTweets.put(t,categories);
+          allNutritionTweets.put(t, categories);
         }
       }
     } catch (IOException e) {
@@ -102,8 +95,48 @@ public class DataLoader {
     } catch (ParseException e) {
         e.printStackTrace();
     }
-      System.out.println("All Tweets" + allTweets.size());
+      System.out.println("All Tweets" + allNutritionTweets.size());
   }
+
+    public static void loadAllHealthTweets(String filePath) {
+        String line = "";
+        // Create the file reader
+        try {
+            fileReader = new BufferedReader(new FileReader(filePath));
+            while ((line = fileReader.readLine()) != null) {
+                // Get all tokens available in line
+                String[] tokens = line.split("\t");
+                int len = tokens.length;
+
+                if (!(tokens[4].isEmpty() || tokens[5].isEmpty())) {
+
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    Calendar calendar = Calendar.getInstance();
+                    Date date = formatter.parse(tokens[7]);
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd MMMMMMMMMMMM yyyy HH:mm:ss");
+                    calendar.setTime(date);
+                    String upload_date = sdf.format(calendar.getTime());
+
+                    Tweet t =
+                            new Tweet(375,Double.parseDouble(tokens[4]),Double.parseDouble(tokens[5]),tokens[2],Long.parseLong(tokens[0]),
+                                    "",
+                                    "http://www.panoramio.com/user/475995","http://mw2.google.com/mw-panoramio/photos/medium/11630238.jpg",
+                                    "http://www.panoramio.com/photo/11630238",upload_date,500,Integer.parseInt(tokens[1]));
+
+                    List<String> categories = new ArrayList<String>();
+                    categories.add(tokens[11]);
+                    allHealthTweets.put(t, categories);
+                }
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println("All Tweets" + allHealthTweets.size());
+    }
 
   public static void loadAllAds(String filePath) {
     String line = "";
@@ -128,14 +161,15 @@ public class DataLoader {
   }
 
   public static void main(String args[]) {
-    //DataLoader.loadAllTweets("/var/www/intelliad/userLabels.csv", false);
-    DataLoader.loadAllTweets("/var/www/intelliad/tweetLabel.csv", true);
+    //DataLoader.loadAllNutritionTweets("/var/www/intelliad/userLabels.csv", false);
+    DataLoader.loadAllNutritionTweets("/var/www/intelliad/tweetLabel.csv");
+    DataLoader.loadAllHealthTweets("/var/www/intelliad/tweetLabel.csv");
     //DataLoader.makeMapping();
     //loadAllAds("/var/www/intelliad/imContentsample.csv");
 //    for(int i = 0;i<7;i++){
 //    loadAllAds("/var/www/intelliad/imContent.csv-"+i);
 //    }
 //    System.out.println(allAds);
-      System.out.println(allTweets);
+      System.out.println(allNutritionTweets);
   }
 }
