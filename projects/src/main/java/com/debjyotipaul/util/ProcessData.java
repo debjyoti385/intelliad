@@ -205,7 +205,7 @@ public class ProcessData {
       SimpleDateFormat sdf = new SimpleDateFormat("dd MMMMMMMMMMMM yyyy");
       adList.add(new Tweet(375, 76.0, 76.0, "", 0, category, "",
           "http://localhost:/"+path,
-          "", "", 500, 475995));
+          "", "", 500, 475995,0));
       // create object here
     }
     return adList;

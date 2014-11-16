@@ -1200,6 +1200,7 @@ L.PanoramioLayer = L.PanoramioLayer.extend({
 		},
 		setIcon: function (record, options) {
 			var title = L.Util.getFieldValue(record, 'photo_title');
+			var type = L.Util.getFieldValue(record, 'type');
 
 			var size = null;
 
@@ -1215,7 +1216,12 @@ L.PanoramioLayer = L.PanoramioLayer.extend({
 				//html: '<img class="photo" onload="this.style.opacity=1" title="' + title + '" src="' + url + '"/>'
 				//html: '<img class="photo" onload="this.style.opacity=1" title="' + title + '" src="marker_icon/bluePin.png"/>'
 			});
-            return new L.Icon({iconUrl: 'marker_icon/bluePin.png',iconSize:[30, 30],iconAnchor:[15, 15],popupAnchor:  [-10, -50]});
+            if (type === 1){
+                return new L.Icon({iconUrl: 'marker_icon/bluePin.png',iconSize:[30, 30],iconAnchor:[15, 15],popupAnchor:  [-10, -50]});
+            }
+            else if (type === 0 ){
+                return new L.Icon({iconUrl: 'marker_icon/greenBallPin.png',iconSize:[30, 30],iconAnchor:[15, 15],popupAnchor:  [-10, -50]});
+            }
 			//return icon;
 		},
 		updateInterval: 300000,

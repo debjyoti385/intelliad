@@ -35,25 +35,27 @@ public String upload_date;
 public int width;
 @JsonProperty
 public long owner_id;
-public Tweet(int height, double latitude, double longitude, String photo_title, long photo_id,
-    String owner_name, String owner_url, String photo_file_url, String photo_url,
-    String upload_date, int width, long owner_id) {
-  super();
-  this.height = height;
-  this.latitude = latitude;
-  this.longitude = longitude;
-  this.photo_title = photo_title;
-  this.photo_id = photo_id;
-  this.owner_name = owner_name;
-  this.owner_url = owner_url;
-  this.photo_file_url = photo_file_url;
-  this.photo_url = photo_url;
-  this.upload_date = upload_date;
-  this.width = width;
-  this.owner_id = owner_id;
-}
 
-public  Tweet(Optional<Double> minx, Optional<Double> miny,Optional<Double> maxx, Optional<Double> maxy) {
+@JsonProperty
+public int type;
+
+    public Tweet(int height, double latitude, double longitude, String photo_title, long photo_id, String owner_name, String owner_url, String photo_file_url, String photo_url, String upload_date, int width, long owner_id, int type) {
+        this.height = height;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.photo_title = photo_title;
+        this.photo_id = photo_id;
+        this.owner_name = owner_name;
+        this.owner_url = owner_url;
+        this.photo_file_url = photo_file_url;
+        this.photo_url = photo_url;
+        this.upload_date = upload_date;
+        this.width = width;
+        this.owner_id = owner_id;
+        this.type = type;
+    }
+
+    public  Tweet(Optional<Double> minx, Optional<Double> miny,Optional<Double> maxx, Optional<Double> maxy) {
         this.height = 375;
 
         Random randomGenerator = new Random();
