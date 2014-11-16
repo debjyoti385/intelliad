@@ -1,6 +1,6 @@
 setInterval(function(){
       // method to be executed;
-		var w = 200,
+		var w = 250,
 		    h = 125;
         d3.select('svg').remove();
         d3.select('svg').remove();
