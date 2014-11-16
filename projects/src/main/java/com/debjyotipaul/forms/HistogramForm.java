@@ -3,7 +3,6 @@ package com.debjyotipaul.forms;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,45 +16,48 @@ import java.util.List;
 public class HistogramForm {
 
     @JsonProperty
-    List<CategoryCountForm> ad_histogram;
+    List<CategoryCountForm> user_health_chart;
     @JsonProperty
-    List<CategoryCountForm> tweet_histogram;
+    List<CategoryCountForm> tweet_health_chart;
     @JsonProperty
-    List<CategoryCountForm> user_histogram;
+    List<CategoryCountForm> user_nutrition_chart;
+    @JsonProperty
+    List<CategoryCountForm> tweet_nutrition_chart;
 
-    public HistogramForm(List<CategoryCountForm> tweet_histogram) {
-        this.ad_histogram = new ArrayList<CategoryCountForm>();
-        this.tweet_histogram = tweet_histogram;
-        this.user_histogram = new ArrayList<CategoryCountForm>();
+//    public HistogramForm(List<CategoryCountForm> tweet_health_chart) {
+//        this.user_health_chart = new ArrayList<CategoryCountForm>();
+//        this.tweet_health_chart = tweet_health_chart;
+//        this.user_nutrition_chart = new ArrayList<CategoryCountForm>();
+//    }
+
+    public HistogramForm(List<CategoryCountForm> user_health_chart, List<CategoryCountForm> tweet_health_chart, List<CategoryCountForm> user_nutrition_chart, List<CategoryCountForm> tweet_nutrition_chart) {
+        this.user_health_chart = user_health_chart;
+        this.tweet_health_chart = tweet_health_chart;
+        this.user_nutrition_chart = user_nutrition_chart;
+        this.tweet_nutrition_chart = tweet_nutrition_chart;
     }
 
-    public HistogramForm(List<CategoryCountForm> ad_histogram, List<CategoryCountForm> tweet_histogram, List<CategoryCountForm> user_histogram) {
-        this.ad_histogram = ad_histogram;
-        this.tweet_histogram = tweet_histogram;
-        this.user_histogram = user_histogram;
+    public List<CategoryCountForm> getUser_health_chart() {
+        return user_health_chart;
     }
 
-    public List<CategoryCountForm> getAd_histogram() {
-        return ad_histogram;
+    public void setUser_health_chart(List<CategoryCountForm> user_health_chart) {
+        this.user_health_chart = user_health_chart;
     }
 
-    public void setAd_histogram(List<CategoryCountForm> ad_histogram) {
-        this.ad_histogram = ad_histogram;
+    public List<CategoryCountForm> getTweet_health_chart() {
+        return tweet_health_chart;
     }
 
-    public List<CategoryCountForm> getTweet_histogram() {
-        return tweet_histogram;
+    public void setTweet_health_chart(List<CategoryCountForm> tweet_health_chart) {
+        this.tweet_health_chart = tweet_health_chart;
     }
 
-    public void setTweet_histogram(List<CategoryCountForm> tweet_histogram) {
-        this.tweet_histogram = tweet_histogram;
+    public List<CategoryCountForm> getUser_nutrition_chart() {
+        return user_nutrition_chart;
     }
 
-    public List<CategoryCountForm> getUser_histogram() {
-        return user_histogram;
-    }
-
-    public void setUser_histogram(List<CategoryCountForm> user_histogram) {
-        this.user_histogram = user_histogram;
+    public void setUser_nutrition_chart(List<CategoryCountForm> user_nutrition_chart) {
+        this.user_nutrition_chart = user_nutrition_chart;
     }
 }
