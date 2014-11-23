@@ -89,12 +89,12 @@ $(document).ready(function() {
 			var startMoment = moment(uploaded, 'DD MMM YYYY h:mm:ss');
 			var start = startMoment.toDate();
 			var caption = "";
-			if (photo['photo_title'].length > 1){
+//			if (photo['photo_title'].length > 1){
 				caption = photo['photo_title'];
-			}
-			else {
+//			}
+//			else {
 				caption= "User: " + photo['owner_name'];
-			}
+//			}
 			var photoItem = {
 				start: start,
                 content: '<img class="photo" title="' + caption + '"onload="this.style.opacity=1" src="marker_icon/tweetbutton.jpg"  data-id="'+index +'"/>'+ caption.substring(0,20),

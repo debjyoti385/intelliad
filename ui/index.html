@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/example.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/ui.css" type="text/css" media="screen" />
     <!--<script src="http://d3js.org/d3.v3.min.js"></script>-->
-    <script type="text/javascript" src="http://d3js.org/d3.v2.js"></script>
+    <script type="text/javascript" src="http://d3js.org/d3.v2.min.js"></script>
 	<style>   
 		body {
 			overflow-x: hidden;
@@ -195,25 +195,13 @@
 	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	<script type="text/javascript" src="lib/date.format.js"></script>
-	<script type="text/javascript" src="dist/leaflet-dvf.js"></script>
+    <!--	<script type="text/javascript" src="dist/leaflet-dvf.js"></script> -->
+	<script type="text/javascript" src="dist/leaflet-dvf-intelliad.min.js"></script>
 	<script type="text/javascript" src="src/leaflet.dvf.datalayer.js"></script>
 	<script type="text/javascript" src="js/chromaticgallery.js"></script>
-	<script type="text/javascript" src="js/panoramio.js"></script>
+	<script type="text/javascript" src="js/intelliad.js"></script>
     <script type="text/javascript" src ="bar.js"></script> 
 <!--    <script>
-
-var histogram_data = [4, 8, 15, 16, 23, 42];
-
-var x = d3.scale.linear()
-    .domain([0, d3.max(histogram_data)])
-    .range([0, 420]);
-
-d3.select(".chart")
-  .selectAll("div")
-    .data(histogram_data)
-  .enter().append("div")
-    .style("width", function(d) { return x(d) + "px"; })
-    .text(function(d) { return d; });
 
 </script> -->
 </body>

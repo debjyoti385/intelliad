@@ -80,9 +80,10 @@ public class DataLoader {
 
           Tweet t =
                   new Tweet(375,Double.parseDouble(tokens[4]),Double.parseDouble(tokens[5]),tokens[2],Long.parseLong(tokens[0]),
-                          "",
-                          "http://www.panoramio.com/user/475995","http://mw2.google.com/mw-panoramio/photos/medium/11630238.jpg",
-                          "http://www.panoramio.com/photo/11630238",upload_date,500,Long.parseLong(tokens[1]),1);
+//                          "",
+//                          "","",
+//                          "",
+                          upload_date,500,Long.parseLong(tokens[1]),1);
 
           List<String> categories = new ArrayList<String>();
           categories.add(tokens[11]);
@@ -120,9 +121,10 @@ public class DataLoader {
 
                     Tweet t =
                             new Tweet(375,Double.parseDouble(tokens[4]),Double.parseDouble(tokens[5]),tokens[2],Long.parseLong(tokens[0]),
-                                    "",
-                                    "http://www.panoramio.com/user/475995","http://mw2.google.com/mw-panoramio/photos/medium/11630238.jpg",
-                                    "http://www.panoramio.com/photo/11630238",upload_date,500,Long.parseLong(tokens[1]),0);
+//                                    "",
+//                                    "","",
+//                                    "",
+                                    upload_date,500,Long.parseLong(tokens[1]),0);
 
                     List<String> categories = new ArrayList<String>();
                     categories.add(tokens[11]);

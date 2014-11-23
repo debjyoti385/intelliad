@@ -141,6 +141,7 @@ var layoutPhotos = function (elementSelector, photos, getAspectRatio, resize) {
 	$element.empty();
 	
 	_.each(photos, function (photo) {
-		$(_.template('<img src="<%= photo_file_url %>" width="<%= width %>" height="<%= height %>"/>', photo)).hide().appendTo($element).fadeIn('slow');
+//		$(_.template('<img src="<%= photo_file_url %>" width="<%= width %>" height="<%= height %>"/>', photo)).hide().appendTo($element).fadeIn('slow');
+		$(_.template('', photo)).hide().appendTo($element).fadeIn('slow');
 	});
 }

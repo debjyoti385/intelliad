@@ -4355,12 +4355,12 @@ L.PanoramioLayer = L.PanoramioLayer.extend({
                 photo.setAttribute("src", photoUrl);
                 photo.style.width = width + "px";
                 var photoInfo = L.DomUtil.create("div", "photo-info", content);
-                photoInfo.style.width = width - 20 + "px";
-                photoInfo.innerHTML = "<span>" + title + "</span>" + '<a class="photo-link" target="_blank" href="' + record["photo_url"] + '">' + '<img src="http://www.panoramio.com/img/glass/components/logo_bar/panoramio.png" style="height: 14px;"/>' + "</a>";
+//                photoInfo.style.width = width - 20 + "px";
+//                photoInfo.innerHTML = "<span>" + title + "</span>" + '<a class="photo-link" target="_blank" href="' + record["photo_url"] + '">' + '<img src="http://www.panoramio.com/img/glass/components/logo_bar/panoramio.png" style="height: 14px;"/>' + "</a>";
                 var authorLink = L.DomUtil.create("a", "author-link", content);
-                authorLink.setAttribute("target", "_blank");
-                authorLink.setAttribute("href", record["owner_url"]);
-                authorLink.innerHTML = "by " + record["owner_name"];
+//                authorLink.setAttribute("target", "_blank");
+//                authorLink.setAttribute("href", record["owner_url"]);
+//                authorLink.innerHTML = "by " + record["owner_name"];
                 var icon = new L.DivIcon({
                     className: "photo-details",
                     html: container.innerHTML,

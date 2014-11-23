@@ -21,14 +21,14 @@ public class Tweet {
   public String photo_title; //text
 @JsonProperty
   public long photo_id;
-@JsonProperty
-  public String owner_name; //user descirption
-@JsonProperty
-  public String owner_url;
-@JsonProperty
-public String photo_file_url;
-@JsonProperty
-  public String photo_url;
+//@JsonProperty
+//  public String owner_name; //user descirption
+//@JsonProperty
+//  public String owner_url;
+//@JsonProperty
+//public String photo_file_url;
+//@JsonProperty
+//  public String photo_url;
 @JsonProperty
 public String upload_date;
 @JsonProperty
@@ -39,16 +39,16 @@ public long owner_id;
 @JsonProperty
 public int type;
 
-    public Tweet(int height, double latitude, double longitude, String photo_title, long photo_id, String owner_name, String owner_url, String photo_file_url, String photo_url, String upload_date, int width, long owner_id, int type) {
+    public Tweet(int height, double latitude, double longitude, String photo_title, long photo_id, String upload_date, int width, long owner_id, int type) {
         this.height = height;
         this.latitude = latitude;
         this.longitude = longitude;
         this.photo_title = photo_title;
         this.photo_id = photo_id;
-        this.owner_name = owner_name;
-        this.owner_url = owner_url;
-        this.photo_file_url = photo_file_url;
-        this.photo_url = photo_url;
+//        this.owner_name = owner_name;
+//        this.owner_url = owner_url;
+//        this.photo_file_url = photo_file_url;
+//        this.photo_url = photo_url;
         this.upload_date = upload_date;
         this.width = width;
         this.owner_id = owner_id;
@@ -68,10 +68,10 @@ public int type;
         this.longitude = miny.get()  + (double) randomY;
         this.photo_title = "Sample tweet alias of photo_title" + count ;
         this.photo_id = 11630238;
-        this.owner_name = "Rnsun";
-        this.owner_url = "http://www.panoramio.com/user/475995";
-        this.photo_file_url = "http://mw2.google.com/mw-panoramio/photos/medium/11630238.jpg";
-        this.photo_url = "http://www.panoramio.com/photo/11630238";
+//        this.owner_name = "Rnsun";
+//        this.owner_url = "http://www.panoramio.com/user/475995";
+//        this.photo_file_url = "http://mw2.google.com/mw-panoramio/photos/medium/11630238.jpg";
+//        this.photo_url = "http://www.panoramio.com/photo/11630238";
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMMMMMMMMMM yyyy");
         Calendar cal = new GregorianCalendar(2014, 8, (int) (Math.random() * 29 + 1));
         this.upload_date = sdf.format(cal.getTime());
@@ -111,30 +111,30 @@ public long getPhoto_id() {
 public void setPhoto_id(long photo_id) {
   this.photo_id = photo_id;
 }
-public String getOwner_name() {
-  return owner_name;
-}
-public void setOwner_name(String owner_name) {
-  this.owner_name = owner_name;
-}
-public String getOwner_url() {
-  return owner_url;
-}
-public void setOwner_url(String owner_url) {
-  this.owner_url = owner_url;
-}
-public String getPhoto_file_url() {
-  return photo_file_url;
-}
-public void setPhoto_file_url(String photo_file_url) {
-  this.photo_file_url = photo_file_url;
-}
-public String getPhoto_url() {
-  return photo_url;
-}
-public void setPhoto_url(String photo_url) {
-  this.photo_url = photo_url;
-}
+//public String getOwner_name() {
+//  return owner_name;
+//}
+//public void setOwner_name(String owner_name) {
+//  this.owner_name = owner_name;
+//}
+//public String getOwner_url() {
+//  return owner_url;
+//}
+//public void setOwner_url(String owner_url) {
+//  this.owner_url = owner_url;
+//}
+//public String getPhoto_file_url() {
+//  return photo_file_url;
+//}
+//public void setPhoto_file_url(String photo_file_url) {
+//  this.photo_file_url = photo_file_url;
+//}
+//public String getPhoto_url() {
+//  return photo_url;
+//}
+//public void setPhoto_url(String photo_url) {
+//  this.photo_url = photo_url;
+//}
 public String getUpload_date() {
   return upload_date;
 }
@@ -162,11 +162,11 @@ public void setOwner_id(int owner_id) {
                 ", \"longitude\":" + longitude +
                 ", \"photo_title\":'" + photo_title + '\'' +
                 ", \"photo_id\":" + photo_id +
-                ", \"owner_name\":'" + owner_name + '\'' +
-                ", \"owner_url\":'" + owner_url + '\'' +
-                ", \"photo_file_url\":'" + photo_file_url + '\'' +
-                ", \"photo_url\":'" + photo_url + '\'' +
-                ", \"upload_date\":'" + upload_date + '\'' +
+//                ", \"owner_name\":'" + owner_name + '\'' +
+//                ", \"owner_url\":'" + owner_url + '\'' +
+//                ", \"photo_file_url\":'" + photo_file_url + '\'' +
+//                ", \"photo_url\":'" + photo_url + '\'' +
+//                ", \"upload_date\":'" + upload_date + '\'' +
                 ", \"width\":" + width +
                 ", \"owner_id\":" + owner_id +
                 '}';

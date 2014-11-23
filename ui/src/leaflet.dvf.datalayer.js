@@ -1166,11 +1166,11 @@ L.PanoramioLayer = L.PanoramioLayer.extend({
 						      '<img src="marker_icon/tweetbutton.jpg" style="height: 30px; opacity=0.8"/>' +
 						      '</a>';
 
-				var authorLink = L.DomUtil.create('a', 'author-link', content);
-				authorLink.setAttribute('target', '_blank');
-				authorLink.setAttribute('href', record['owner_url']);
+//				var authorLink = L.DomUtil.create('a', 'author-link', content);
+//				authorLink.setAttribute('target', '_blank');
+//				authorLink.setAttribute('href', record['owner_url']);
 				//authorLink.innerHTML =  record['owner_name'];
-				authorLink.innerHTML =  "";
+//				authorLink.innerHTML =  "";
 
 				var icon = new L.DivIcon({
 					className: 'photo-details',
@@ -1209,7 +1209,8 @@ L.PanoramioLayer = L.PanoramioLayer.extend({
 			}
 
 			var iconSize = size ? new L.Point(size, size) : L.PanoramioLayer.SIZES[this.options.size];
-			var url = record['photo_file_url'].replace('/medium/', '/' + this.options.size + '/');
+//			var url = record['photo_file_url'].replace('/medium/', '/' + this.options.size + '/');
+			var url = '#';
 			var icon = new L.DivIcon({
 				iconSize: iconSize,
 				className: ''
