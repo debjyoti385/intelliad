@@ -30,6 +30,8 @@ To test
 ## UI ##
 ![IntelliAd](https://github.com/debjyoti385/intelliad/raw/master/intelliad.png "IntelliAd")
 
+### DEMO Implementation of Medical tweets Branch ###
+![Demo](http://slide-apps.imag.fr/crowdhealth/ "Demo")
 
 <Please list all API's here>
 
