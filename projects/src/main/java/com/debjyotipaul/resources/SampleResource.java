@@ -26,10 +26,14 @@ public class SampleResource {
 
   private ProcessData data;
 
-  private List<CategoryCountForm> user_health_chart;
+    private List<CategoryCountForm> user_health_chart;
     private List<CategoryCountForm> tweet_health_chart;
     private List<CategoryCountForm> tweet_nutrition_chart;
     private List<CategoryCountForm> user_nutrition_chart;
+    private List<CategoryCountForm> user_health_pie;
+    private List<CategoryCountForm> tweet_health_pie;
+    private List<CategoryCountForm> tweet_nutrition_pie;
+    private List<CategoryCountForm> user_nutrition_pie;
 
   public SampleResource(String template, String defaultName) {
     this.data = null;
@@ -37,6 +41,10 @@ public class SampleResource {
     this.tweet_health_chart = new ArrayList<CategoryCountForm>();
     this.tweet_nutrition_chart = new ArrayList<CategoryCountForm>();
     this.user_nutrition_chart = new ArrayList<CategoryCountForm>();
+    this.user_health_pie = new ArrayList<CategoryCountForm>();
+    this.tweet_health_pie = new ArrayList<CategoryCountForm>();
+    this.tweet_nutrition_pie = new ArrayList<CategoryCountForm>();
+    this.user_nutrition_pie = new ArrayList<CategoryCountForm>();
   }
 
   @GET
@@ -90,6 +98,10 @@ public class SampleResource {
         user_nutrition_chart.clear();
         tweet_nutrition_chart.clear();
         tweet_health_chart.clear();
+        user_health_pie.clear();
+        user_nutrition_pie.clear();
+        tweet_nutrition_pie.clear();
+        tweet_health_pie.clear();
 
 
         for (String key: data.tweetNutritionHistogram.keySet()){
@@ -103,6 +115,19 @@ public class SampleResource {
         }
         for (String key: data.userNutritionHistogram.keySet()){
             user_nutrition_chart.add(new CategoryCountForm(key, data.userNutritionHistogram.get(key)));
+        }
+
+        for (String key: data.tweetNutritionPieChart.keySet()){
+            tweet_nutrition_pie.add(new CategoryCountForm(key, data.tweetNutritionPieChart.get(key)));
+        }
+        for (String key: data.tweetHealthPieChart.keySet()){
+            tweet_health_pie.add(new CategoryCountForm(key, data.tweetHealthPieChart.get(key)));
+        }
+        for (String key: data.userHealthPieChart.keySet()){
+            user_health_pie.add(new CategoryCountForm(key, data.userHealthPieChart.get(key)));
+        }
+        for (String key: data.userNutritionPieChart.keySet()){
+            user_nutrition_pie.add(new CategoryCountForm(key, data.userNutritionPieChart.get(key)));
         }
 
         MapLocationForm mapLocationForm = new MapLocationForm((minx.get()+maxx.get())/2, (miny.get()+maxy.get())/2, 7 );
@@ -123,7 +148,8 @@ public class SampleResource {
         
         FileWriter file = new FileWriter("/var/www/histograms.json");
         try {
-            String jsonStr=new Gson().toJson(new HistogramForm(user_health_chart,tweet_health_chart,user_nutrition_chart,tweet_nutrition_chart));
+//            String jsonStr=new Gson().toJson(new HistogramForm(user_health_chart,tweet_health_chart,user_nutrition_chart,tweet_nutrition_chart));
+            String jsonStr=new Gson().toJson(new HistogramForm(user_health_chart, user_health_pie, tweet_health_chart, tweet_health_pie, user_nutrition_chart,user_nutrition_pie,tweet_nutrition_chart, tweet_nutrition_pie));
             file.write(jsonStr);
             System.out.println("Successfully Copied JSON Object to File...");
             System.out.println("\nJSON Object: " + jsonStr);
@@ -144,6 +170,6 @@ public class SampleResource {
     @Path("histograms")
     @Produces({MediaType.APPLICATION_JSON, "application/x-javascript; charset=UTF-8", "application/javascript; charset=UTF-8"})
     public Object getHistograms() {
-        return new HistogramForm(user_health_chart,tweet_health_chart,user_nutrition_chart,tweet_nutrition_chart);
+        return new HistogramForm(user_health_chart, user_health_pie, tweet_health_chart, tweet_health_pie, user_nutrition_chart,user_nutrition_pie,tweet_nutrition_chart, tweet_nutrition_pie);
     }
 }

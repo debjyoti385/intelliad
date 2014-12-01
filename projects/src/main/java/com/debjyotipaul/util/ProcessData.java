@@ -20,6 +20,14 @@ public class ProcessData {
   public Map<String, Set<Long>> userHealthHistogramSet;
   public Map<String, Set<Long>> userNutritionHistogramSet;
 
+    public Map<String, Double> tweetHealthPieChart;
+    public Map<String, Double> tweetNutritionPieChart;
+    public Map<String, Double> userHealthPieChart;
+    public Map<String, Double> userNutritionPieChart;
+    public Map<String, Set<Long>> userHealthPieChartSet;
+    public Map<String, Set<Long>> userNutritionPieChartSet;
+
+
   public ProcessData(double minx, double miny, double maxx, double maxy) {
     // TODO Auto-generated constructor stub
     currentNutritionTweets = new ArrayList<Tweet>();
@@ -30,6 +38,13 @@ public class ProcessData {
     userNutritionHistogram = new HashMap<String, Double>();
     userHealthHistogramSet = new HashMap<String, Set<Long>>();
     userNutritionHistogramSet = new HashMap<String, Set<Long>>();
+      tweetHealthPieChart = new HashMap<String, Double>();
+      tweetNutritionPieChart = new HashMap<String, Double>();
+      userHealthPieChart = new HashMap<String, Double>();
+      userNutritionPieChart = new HashMap<String, Double>();
+      userHealthPieChartSet = new HashMap<String, Set<Long>>();
+      userNutritionPieChartSet = new HashMap<String, Set<Long>>();
+
     this.maxx = maxx;
     this.minx = minx;
     this.maxy = maxy;
@@ -47,27 +62,50 @@ public class ProcessData {
     }
 
   public void makeHistograms() {
-      final int k = 5;
-      PriorityQueue<HistObject> histTweetNutritionQueue = new PriorityQueue<HistObject>(k, new Comparator<HistObject>() {
+      final int histK = 5;
+      final int pieK = 5;
+      PriorityQueue<HistObject> histTweetNutritionQueue = new PriorityQueue<HistObject>(histK, new Comparator<HistObject>() {
           public int compare(HistObject obj1, HistObject obj2) {
               return (obj1.count > obj2.count) ? -1 : 1;
           }
       });
-      PriorityQueue<HistObject> histTweetHealthQueue = new PriorityQueue<HistObject>(k, new Comparator<HistObject>() {
+      PriorityQueue<HistObject> histTweetHealthQueue = new PriorityQueue<HistObject>(histK, new Comparator<HistObject>() {
           public int compare(HistObject obj1, HistObject obj2) {
               return (obj1.count > obj2.count) ? -1 : 1;
           }
       });
-      PriorityQueue<HistObject> histUserHealthQueue = new PriorityQueue<HistObject>(k, new Comparator<HistObject>() {
+      PriorityQueue<HistObject> histUserHealthQueue = new PriorityQueue<HistObject>(histK, new Comparator<HistObject>() {
           public int compare(HistObject obj1, HistObject obj2) {
               return (obj1.count > obj2.count) ? -1 : 1;
           }
       });
-      PriorityQueue<HistObject> histUserNutritionQueue = new PriorityQueue<HistObject>(k, new Comparator<HistObject>() {
+      PriorityQueue<HistObject> histUserNutritionQueue = new PriorityQueue<HistObject>(histK, new Comparator<HistObject>() {
           public int compare(HistObject obj1, HistObject obj2) {
               return (obj1.count > obj2.count) ? -1 : 1;
           }
       });
+
+      PriorityQueue<HistObject> pieTweetNutritionQueue = new PriorityQueue<HistObject>(pieK, new Comparator<HistObject>() {
+          public int compare(HistObject obj1, HistObject obj2) {
+              return (obj1.count > obj2.count) ? -1 : 1;
+          }
+      });
+      PriorityQueue<HistObject> pieTweetHealthQueue = new PriorityQueue<HistObject>(pieK, new Comparator<HistObject>() {
+          public int compare(HistObject obj1, HistObject obj2) {
+              return (obj1.count > obj2.count) ? -1 : 1;
+          }
+      });
+      PriorityQueue<HistObject> pieUserHealthQueue = new PriorityQueue<HistObject>(pieK, new Comparator<HistObject>() {
+          public int compare(HistObject obj1, HistObject obj2) {
+              return (obj1.count > obj2.count) ? -1 : 1;
+          }
+      });
+      PriorityQueue<HistObject> pieUserNutritionQueue = new PriorityQueue<HistObject>(pieK, new Comparator<HistObject>() {
+          public int compare(HistObject obj1, HistObject obj2) {
+              return (obj1.count > obj2.count) ? -1 : 1;
+          }
+      });
+
     for (Tweet t : currentNutritionTweets) {
       for (String category : DataLoader.allNutritionTweets.get(t)) {
           if (tweetNutritionHistogram.containsKey(category)) {
@@ -110,11 +148,16 @@ public class ProcessData {
     for (String category : tweetNutritionHistogram.keySet()){
         histTweetNutritionQueue.add(new HistObject(category, tweetNutritionHistogram.get(category)));
         histUserNutritionQueue.add(new HistObject(category,(double) userNutritionHistogramSet.get(category).size()));
+        pieTweetNutritionQueue.add(new HistObject(category, tweetNutritionHistogram.get(category)));
+        pieUserNutritionQueue.add(new HistObject(category,(double) userNutritionHistogramSet.get(category).size()));
     }
 
       for (String category : tweetHealthHistogram.keySet()){
           histTweetHealthQueue.add(new HistObject(category, tweetHealthHistogram.get(category)));
           histUserHealthQueue.add(new HistObject(category,(double) userHealthHistogramSet.get(category).size()));
+
+          pieTweetHealthQueue.add(new HistObject(category, tweetHealthHistogram.get(category)));
+          pieUserHealthQueue.add(new HistObject(category,(double) userHealthHistogramSet.get(category).size()));
       }
 
 
@@ -122,11 +165,20 @@ public class ProcessData {
     tweetHealthHistogram.clear();
     userHealthHistogram.clear();
     userNutritionHistogram.clear();
+      tweetNutritionPieChart.clear();
+      tweetHealthPieChart.clear();
+      userHealthPieChart.clear();
+      userNutritionPieChart.clear();
+
+
       int i =0;
+      double  countT = 0.0;
+      double countU = 0.0;
+
       while(true){
           HistObject nutriObj = histTweetNutritionQueue.poll();
           HistObject nutriUserObj = histUserNutritionQueue.poll();
-          if(nutriObj== null || i >=k)
+          if(nutriObj== null || i >=histK)
               break;
           tweetNutritionHistogram.put(nutriObj.category, nutriObj.count);
           userNutritionHistogram.put(nutriUserObj.category,nutriUserObj.count);
@@ -136,20 +188,67 @@ public class ProcessData {
       while(true){
           HistObject healthObj = histTweetHealthQueue.poll();
           HistObject healthUserObj = histUserHealthQueue.poll();
-          if (healthObj == null || i >=k)
+          if (healthObj == null || i >=histK)
               break;
           tweetHealthHistogram.put(healthObj.category,healthObj.count);
           userHealthHistogram.put(healthUserObj.category,healthUserObj.count);
           i++;
       }
+
+      i=0;
+      while(true){
+          HistObject healthObj = pieTweetHealthQueue.poll();
+          HistObject healthUserObj = pieUserHealthQueue.poll();
+          if (healthObj == null)
+              break;
+          if ( i < pieK){
+              tweetHealthPieChart.put(healthObj.category,healthObj.count);
+              userHealthPieChart.put(healthUserObj.category,healthUserObj.count);
+            }
+          else {
+            countT+= healthObj.count;
+            countU += healthUserObj.count;
+          }
+          i++;
+      }
+
+      countT = 0.0;
+      countU = 0.0;
+
+      i=0;
+      while(true){
+          HistObject nutriObj = histTweetNutritionQueue.poll();
+          HistObject nutriUserObj = histUserNutritionQueue.poll();
+          if (nutriObj == null)
+              break;
+          if ( i < pieK){
+              tweetNutritionPieChart.put(nutriObj.category,nutriObj.count);
+              userNutritionPieChart.put(nutriUserObj.category,nutriUserObj.count);
+          }
+          else {
+              countT+= nutriObj.count;
+              countU += nutriUserObj.count;
+          }
+          i++;
+      }
+
     normalize(tweetNutritionHistogram);
     normalize(tweetHealthHistogram);
     normalize(userHealthHistogram);
     normalize(userNutritionHistogram);
+      normalize(tweetNutritionPieChart);
+      normalize(tweetHealthPieChart);
+      normalize(userHealthPieChart);
+      normalize(userNutritionPieChart);
+
     System.out.println("TWEET NUTRITION " + tweetNutritionHistogram);
     System.out.println("TWEET HEALTH    " + tweetHealthHistogram);
     System.out.println("USER NUTRITION  " + userNutritionHistogram);
     System.out.println("USER HEALTH     " + userHealthHistogram);
+      System.out.println("PIE TWEET NUTRITION " + tweetNutritionPieChart);
+      System.out.println("PIE TWEET HEALTH    " + tweetHealthPieChart);
+      System.out.println("PIE USER NUTRITION  " + userNutritionPieChart);
+      System.out.println("PIE USER HEALTH     " + userHealthPieChart);
   }
 
   public boolean isWithin(Tweet t) {
@@ -203,9 +302,9 @@ public class ProcessData {
       String category = ads.getKey();
       String path = ads.getValue().get((int) (Math.random() * ads.getValue().size()));
       SimpleDateFormat sdf = new SimpleDateFormat("dd MMMMMMMMMMMM yyyy");
-      adList.add(new Tweet(375, 76.0, 76.0, "", 0, category, "",
-          "http://localhost:/"+path,
-          "", "", 500, 475995,0));
+//      adList.add(new Tweet(375, 76.0, 76.0, "", 0, category, "",
+//          "http://localhost:/"+path,
+//          "", "", 500, 475995,0));
       // create object here
     }
     return adList;
