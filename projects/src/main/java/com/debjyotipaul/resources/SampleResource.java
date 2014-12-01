@@ -146,7 +146,8 @@ public class SampleResource {
 
         IntelliADForm intelliADForm = new IntelliADForm(50,true,mapLocationForm,minx.get(),miny.get(),maxx.get(),maxy.get(),adCategoryHist,outputTweets);
         
-        FileWriter file = new FileWriter("/var/www/histograms.json");
+//        FileWriter file = new FileWriter("/var/www/histograms.json");
+        FileWriter file = new FileWriter("../ui/histograms.json");
         try {
 //            String jsonStr=new Gson().toJson(new HistogramForm(user_health_chart,tweet_health_chart,user_nutrition_chart,tweet_nutrition_chart));
             String jsonStr=new Gson().toJson(new HistogramForm(user_health_chart, user_health_pie, tweet_health_chart, tweet_health_pie, user_nutrition_chart,user_nutrition_pie,tweet_nutrition_chart, tweet_nutrition_pie));

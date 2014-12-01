@@ -1,4 +1,5 @@
-setInterval(function(){
+function update_histograms() {
+//setInterval(function(){
       // method to be executed;
 		var w = 250,
 		    h = 125;
@@ -196,5 +197,5 @@ setInterval(function(){
 
 		});
 
-    },5000);
-
+//    },5000);
+}

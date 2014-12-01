@@ -1398,6 +1398,7 @@ L.PanoramioLayer = L.PanoramioLayer.extend({
 		var request = this.requestJsonp(
 			//'http://www.panoramio.com/map/get_panoramas.php',
             'http://localhost:8080/ads/tweets',
+            //"/crowdhealth/tweets",
 			{
 				set: this.options.photoSet,
 				from: me._from,
@@ -1423,6 +1424,8 @@ L.PanoramioLayer = L.PanoramioLayer.extend({
 				me.fire('photosAvailable', data);
 				me.clearLayers();
 				me.addData(data);
+                update_pieChart();
+                update_histograms();
 			}
 		);
 

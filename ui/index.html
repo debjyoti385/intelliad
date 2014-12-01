@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>IntelliAD</title>
+    <title>Social_Health&Nutrition</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/example.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/ui.css" type="text/css" media="screen" />
     <!--<script src="http://d3js.org/d3.v3.min.js"></script>-->
-    <script type="text/javascript" src="http://d3js.org/d3.v2.min.js"></script>
+    <script type="text/javascript" src="http://d3js.org/d3.v2.js"></script>
 	<style>   
 		body {
 			overflow-x: hidden;
@@ -84,7 +84,7 @@
 			padding: 0px;
 			margin: 0px;
 		}
-      
+     
       	#timeline img.photo {
       		height: 20px !important;
       		width: auto !important;
@@ -125,6 +125,16 @@
 			height:100%;
 		}
         .bar {fill: burlywood;}
+        .bar.cough {fill: yellow;}
+        .bar.disorders {fill: red;}
+        .bar.fibrosis {fill: lightsteelblue;}
+        .bar.gallstones {fill: slategray;}
+        .bar.infection {fill: royalblue;}
+        .bar.jaundice {fill: goldenrod;}
+        .bar.migraine {fill: olivedrab;}
+        .bar.overweight {fill: green;}
+        .bar.premenstrual {fill: green;}
+        .bar.sores {fill: orange;}
         .bar.cancer {fill: red;}
         .bar.malaria {fill: orange;}
         .bar.typhoid {fill: yellow;}
@@ -140,6 +150,23 @@
         .bar.dengue {fill: royalblue;}
         .bar.mumps {fill: goldenrod;}
         .bar.cholera {fill: olivedrab;}
+        .bar.banana{fill: red}
+        .bar.oranges{fill: yellow}
+        .bar.greens{fill: green}
+        .bar.peppers{fill: lightsteelblue}
+	.bar.garlic{fill: red}
+	.bar.pears{fill: green}
+	.bar.eggs{fill: yellow}
+	.bar.beef{fill: red}
+	.bar.olive{fill: red}
+	.bar.papaya{fill: yellow}
+	.bar.corn{fill: brown}
+	.bar.cheese{fill: pink}
+	.bar.potatoes{fill: lightsteelblue}
+	.bar.milk{fill: green}
+        .bar.chiken{fill: red}
+	.bar.peard{fill: yellow}
+
         .bar.Utility {fill: plum;}
 		.bar.category1 { fill: green; }
 		.bar.category2 { fill: lightgreen; }
@@ -158,15 +185,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">IntelliAd</a>
+          <a class="brand" href="#">Social_Health&Nutrition</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">The_Who</a></li>
+              <li class="active"><a href="#">SLIDE-LIG</a></li>
             </ul>
           </div>  
           <form class="navbar-search pull-right">
-			  <input type="text" class="search-query" placeholder="Search">
-			</form>
+                          <input type="text" class="search-query" placeholder="Search">
+                        </form>
         </div>
       </div>
     </div>
@@ -177,17 +204,25 @@
         </div> -->
 		<div id="map"></div>
 		<div id="timeline"></div>
-        <div id="histograms" style="position:absolute;opacity:0.7; bottom:0px; width:100%;height:150px;background:url(marker_icon/background.png) repeat;">
-        	<div style="position:absolute; left:10px; top:0px;font-weight:bold; ">HEALTH: TWEET PROFILING</div>
-            <div id="tweet_health_chart" style="position:absolute; left:10px; top:20px; opacity:1;"></div>
-        	<div style="position:absolute; left:25%; top:0px;font-weight:bold; ">HEALTH: USER PROFILING</div>
-            <div id="user_health_chart" style="position:absolute; left:25%; top:20px; opacity:0.7;"></div>
-        	<div style="position:absolute; left:50%; top:0px;font-weight:bold; ">NUTRITION: TWEET PROFILING</div>
-            <div id="tweet_nutrition_chart" style="position:absolute; left:50%; top:20px; opacity:0.7;"></div> 
+     <!--  <div id="histograms" style="position:absolute; bottom:0px; width:100%;height:180px;background:url(marker_icon/back.jpeg) repeat;"> -->
+        	
+		<!--	<div style="position:absolute; left:10px; top:0px;font-weight:bold; ">HEALTH: TWEET PROFILING- (74,756)</div>
+            <div id="tweet_health_chart" style="position:absolute; left:10px; top:20px;"></div>
+        	<div style="position:absolute; left:25%; top:0px;font-weight:bold; ">HEALTH: USER PROFILING--(56,938)</div>
+            <div id="user_health_chart" style="position:absolute; left:25%; top:20px;"></div>-->
+
+       <!-- 	<div style="position:absolute; left:50%; top:0px;font-weight:bold; ">NUTRITION: TWEET PROFILING</div>
+             <div id="tweet_nutrition_chart" style="position:absolute; left:50%; top:20px; opacity:0.7;"></div> 
         	<div style="position:absolute; left:75%; top:0px;font-weight:bold; ">NUTRITION: USER PROFILING</div>
-            <div id="user_nutrition_chart" style="position:absolute; left:75%; top:20px; opacity:0.7;"></div> 
-        </div>
-	</div>
+            <div id="user_nutrition_chart" style="position:absolute; left:75%; top:20px; opacity:0.7;"></div>  -->  
+      <!--  </div> -->
+  
+	 <div style="position:absolute; left:5%; top:53%;font-weight:bold; ">HEALTH: USER PROFILING</div>
+     <div id="pie_chart" style="position:absolute; left:3%; top:58%;"></div> 
+
+	<div style="position:absolute; left:79%; top:53%;font-weight:bold; ">NUTRITION: USER PROFILING</div>
+    <div id="pie_chart1" style="position:absolute; left:76%; top:58%;"></div> 
+
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
 	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
@@ -195,13 +230,26 @@
 	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	<script type="text/javascript" src="lib/date.format.js"></script>
-    <!--	<script type="text/javascript" src="dist/leaflet-dvf.js"></script> -->
-	<script type="text/javascript" src="dist/leaflet-dvf-intelliad.min.js"></script>
+	<script type="text/javascript" src="dist/leaflet-dvf.js"></script>
 	<script type="text/javascript" src="src/leaflet.dvf.datalayer.js"></script>
 	<script type="text/javascript" src="js/chromaticgallery.js"></script>
-	<script type="text/javascript" src="js/intelliad.js"></script>
+	<script type="text/javascript" src="js/panoramio.js"></script>
     <script type="text/javascript" src ="bar.js"></script> 
+    <script type="text/javascript" src ="pie.js"></script>
 <!--    <script>
+
+var histogram_data = [4, 8, 15, 16, 23, 42];
+
+var x = d3.scale.linear()
+    .domain([0, d3.max(histogram_data)])
+    .range([0, 420]);
+
+d3.select(".chart")
+  .selectAll("div")
+    .data(histogram_data)
+  .enter().append("div")
+    .style("width", function(d) { return x(d) + "px"; })
+    .text(function(d) { return d; });
 
 </script> -->
 </body>
