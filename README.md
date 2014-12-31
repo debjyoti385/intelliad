@@ -31,7 +31,7 @@ To test
 ![IntelliAd](https://github.com/debjyoti385/intelliad/raw/master/intelliad.png "IntelliAd")
 
 ### DEMO on Medical tweets ###
-<a href="http://slide-apps.imag.fr/crowdhealth/">"Demo"</a>
+<a href="http://slide-apps.liglab.fr/crowdhealth/demo/">"Demo"</a>
 
 
 
