@@ -1,3 +1,6 @@
+### DEMO on Medical tweets ###
+<a href="http://slide-apps.liglab.fr/crowdhealth-demo/">Live Demo</a>
+
 # **Abstract** #
 
 **IntelliAd**: A Social Media driven Intelligent Ad-Targeting framework using Geo-profiling. 
@@ -30,8 +33,7 @@ To test
 ## UI ##
 ![IntelliAd](https://github.com/debjyoti385/intelliad/raw/master/intelliad.png "IntelliAd")
 
-### DEMO on Medical tweets ###
-<a href="http://slide-apps.liglab.fr/crowdhealth-demo/">"Demo"</a>
+
 
 
 
